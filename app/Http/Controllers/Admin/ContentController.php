@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Content;
+use App\Models\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class ContentController extends Controller
 {
@@ -14,7 +17,7 @@ class ContentController extends Controller
     public function index()
     {
         $contents = Content::all();
-        return view("contents.index", compact('contents'));
+        return view('contents.index', compact('contents'));
     }
 
     /**
@@ -22,7 +25,9 @@ class ContentController extends Controller
      */
     public function create()
     {
-        //
+        $types = ['movie', 'show', 'anime'];
+        $genres = Genre::all();
+        return view('contents.create', compact('genres', 'types'));
     }
 
     /**
@@ -30,7 +35,19 @@ class ContentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $data = $request->all();
+        // $newContent = new Content();
+
+        // $slug = Str::slug($data['title']);
+
+        // $newContent->title = $data['title'];
+        // $newContent->slug = $slug;
+        // $newContent->description = $data['description'];
+        // $newContent->type = $data['type'];
+        // $newContent->cover_image = $data['cover_image'];
+        // $newContent->release_year = $data['release_year'];
+
+        // $newContent->save();
     }
 
     /**
