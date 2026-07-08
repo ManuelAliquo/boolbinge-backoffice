@@ -3,5 +3,9 @@
 @section('content')
 <div class="container">
     <h2 class="fs-4 text-secondary my-4">Dashboard</h2>
+
+    <div>
+        <a href="{{route('contents.index')}}">Contents Index</a>
+    </div>
 </div>
 @endsection
