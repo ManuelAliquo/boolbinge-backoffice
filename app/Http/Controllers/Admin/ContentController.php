@@ -11,18 +11,14 @@ use Illuminate\Support\Facades\Storage;
 
 class ContentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // INDEX
     public function index()
     {
         $contents = Content::all();
         return view('contents.index', compact('contents'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // CREATE
     public function create()
     {
         $types = ['movie', 'show', 'anime'];
@@ -30,53 +26,48 @@ class ContentController extends Controller
         return view('contents.create', compact('genres', 'types'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // STORE
     public function store(Request $request)
     {
-        // $data = $request->all();
-        // $newContent = new Content();
+        $data = $request->all();
+        $newContent = new Content();
 
-        // $slug = Str::slug($data['title']);
+        $slug = Str::slug($data['title']);
 
-        // $newContent->title = $data['title'];
-        // $newContent->slug = $slug;
-        // $newContent->description = $data['description'];
-        // $newContent->type = $data['type'];
-        // $newContent->cover_image = $data['cover_image'];
-        // $newContent->release_year = $data['release_year'];
+        $newContent->title = $data['title'];
+        $newContent->slug = $slug;
+        $newContent->description = $data['description'];
+        $newContent->type = $data['type'];
+        $newContent->release_year = $data['release_year'];
 
-        // $newContent->save();
+        if (array_key_exists('cover_image', $data)) {
+            $imgUrl = Storage::putFile('cover_images', $data['cover_image']);
+            $newContent->cover_image = $imgUrl;
+        }
+
+        $newContent->save();
+        return redirect('contents');
     }
 
-    /**
-     * Display the specified resource.
-     */
+    // SHOW
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    // EDIT
     public function edit(string $id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    // UPDATE
     public function update(Request $request, string $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    // DELETE
     public function destroy(string $id)
     {
         //

@@ -4,6 +4,7 @@
     <div class="container my-5">
         <form class="card p-3" action="{{route('contents.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
+            {{-- type --}}
             <div class="mb-3">
                 <label class="form-label fs-5" for="content-type">Type</label>
                 <select class="form-select" name="type" required>
@@ -13,25 +14,30 @@
                     @endforeach
                 </select>
             </div>
+            {{-- title --}}
             <div class="mb-3">
                 <label class="form-label fs-5" for="content-title">Title</label>
                 <input class="form-control" id="content-title" name="title"
                 type="text" placeholder="Insert Content Title" required>
             </div>
+            {{-- year --}}
             <div class="mb-3">
                 <label class="form-label fs-5" for="content-year">Release Year</label>
                 <input class="form-control" id="content-year" name="release_year" type="number"
                  placeholder="Insert Release Year" min="1900" max="2030" required>
             </div>
+            {{-- description --}}
             <div class="mb-2">
                 <label class="form-label fs-5" for="content-description">Description</label>
                 <textarea class="form-control" id="content-description" name="description"
                 placeholder="Insert Content Description" required></textarea>
             </div>
+            {{-- img --}}
             <div class="mb-2">
                 <label class="form-label fs-5" for="content-image">Cover Image</label>
                 <input class="form-control" type="file" id="content-image" name="cover_image">
             </div>
+            {{-- genres --}}
             <div class="mb-4">
                 <label class="form-label">Genres</label>
                 <div class="d-flex gap-3 flex-wrap mb-3">
