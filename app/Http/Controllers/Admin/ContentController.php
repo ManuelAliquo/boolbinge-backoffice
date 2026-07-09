@@ -46,30 +46,61 @@ class ContentController extends Controller
         }
 
         $newContent->save();
+
+        if (isset($data['genres'])) $newContent->genres()->attach($data['genres']);
+
         return redirect('contents');
     }
 
     // SHOW
-    public function show(string $id)
+    public function show(Content $content)
     {
-        //
+        return view('contents.show', compact('content'));
     }
 
     // EDIT
-    public function edit(string $id)
+    public function edit(Content $content)
     {
-        //
+        $types = ['movie', 'show', 'anime'];
+        $genres = Genre::all();
+        return view('contents.edit', compact('content', 'genres', 'types'));
     }
 
     // UPDATE
-    public function update(Request $request, string $id)
+    public function update(Request $request, Content $content)
     {
-        //
+        $data = $request->all();
+
+        $slug = Str::slug($data['title']);
+
+        $content->title = $data['title'];
+        $content->slug = $slug;
+        $content->description = $data['description'];
+        $content->type = $data['type'];
+        $content->release_year = $data['release_year'];
+
+        if (array_key_exists('cover_image', $data)) {
+            if ($content->cover_image) Storage::delete($content->cover_image);
+
+            $imgUrl = Storage::putFile('cover_images', $data['cover_image']);
+            $content->cover_image = $imgUrl;
+        }
+
+        $content->save();
+
+        if (isset($data['genres'])) $content->genres()->sync($data['genres']);
+        else $content->genres()->sync([]);
+
+        return redirect()->route('contents.show', $content);
     }
 
     // DELETE
-    public function destroy(string $id)
+    public function destroy(Content $content)
     {
-        //
+        if ($content->cover_image) Storage::delete($content->cover_image);
+
+        $content->delete();
+
+        return redirect()->route('contents.index');
     }
 }
