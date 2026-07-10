@@ -12,13 +12,25 @@ a {
 }
 
 @media (min-width: 576px) {
+    .dashboard-panel {
+        max-width: 80%;
+    }
 }
 
 @media (min-width: 768px) {
+    .dashboard-panel {
+        max-width: 70%;
+    }
 }
 
 @media (min-width: 992px) {
+    .dashboard-panel {
+        max-width: 50%;
+    }
 }
 
 @media (min-width: 1200px) {
+    .dashboard-panel {
+        max-width: 40%;
+    }
 }

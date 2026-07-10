@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ContentController as AdminContentController;
+use App\Http\Controllers\Admin\GenreController as AdminGenreController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -9,8 +10,10 @@ Route::middleware('auth')->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
+    // genre routes
+    Route::resource('genres', AdminGenreController::class);
+    // content routes
     Route::resource('contents', AdminContentController::class)->except('show');
-
     Route::get('/contents/{content}', [AdminContentController::class, 'show'])->name('contents.show');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

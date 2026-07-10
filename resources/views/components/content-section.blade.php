@@ -24,8 +24,8 @@
             </div>
             <p class="mt-2">{{$content->description}}</p>
             {{-- buttons --}}
-            <div class="d-flex gap-2 mt-3">
-                <a class="btn btn-warning" href="{{route('contents.edit', $content)}}">
+            <div class="d-flex mt-5">
+                <a class="btn btn-warning me-2" href="{{route('contents.edit', $content)}}">
                     <i class="bi bi-pencil-square"></i> Edit
                 </a>
                 <button class="btn btn-danger" data-bs-toggle="modal"
