@@ -58,7 +58,7 @@
                 <a class="btn btn-warning" href="{{route('contents.edit', $content)}}">
                     <i class="bi bi-pencil-square"></i> Edit
                 </a>
-                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#showDeleteModal">
+                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#showContentDeleteModal">
                     <i class="bi bi-trash3"></i> Delete
                 </button>
             </div>
@@ -67,7 +67,7 @@
 </div>
 
 {{-- show content delete modal --}}
-<div class="modal fade" id="showDeleteModal" tabindex="-1" aria-labelledby="showDeleteModalLabel" aria-hidden="true">
+<div class="modal fade" id="showContentDeleteModal" tabindex="-1" aria-labelledby="showContentDeleteModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">

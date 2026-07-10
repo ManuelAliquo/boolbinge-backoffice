@@ -20,7 +20,7 @@
                 <small class="text-center text-muted">view all genres</small>
             </div>
             <div class="d-flex flex-column flex-grow-1">
-                <a class="fs-4 btn btn-info px-4 fw-semibold" href="">Add Genre</a>
+                <a class="fs-4 btn btn-info px-4 fw-semibold" href="{{route('genres.create')}}">Add Genre</a>
                 <small class="text-center text-muted">add new genre</small>
             </div>
         </div>

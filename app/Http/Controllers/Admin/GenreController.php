@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class GenreController extends Controller
 {
@@ -18,13 +19,24 @@ class GenreController extends Controller
     // CREATE
     public function create()
     {
-        //
+        return view('genres.create');
     }
 
     // STORE
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $newGenre = new Genre();
+
+        $slug = Str::slug($data['name']);
+
+        $newGenre->name = $data['name'];
+        $newGenre->slug = $slug;
+        $newGenre->description = $data['description'];
+
+        $newGenre->save();
+
+        return redirect('genres');
     }
 
     // SHOW
@@ -34,20 +46,30 @@ class GenreController extends Controller
     }
 
     // EDIT
-    public function edit(string $id)
+    public function edit(Genre $genre)
     {
-        //
+        return view('genres.edit', compact('genre'));
     }
 
     // UPDATE
-    public function update(Request $request, string $id)
+    public function update(Request $request, Genre $genre)
     {
-        //
+        $data = $request->all();
+
+        $genre->name = $data['name'];
+        $genre->slug = Str::slug($data['name']);
+        $genre->description = $data['description'];
+
+        $genre->save();
+
+        return redirect()->route('genres.index');
     }
 
     // DELETE
-    public function destroy(string $id)
+    public function destroy(Genre $genre)
     {
-        //
+        $genre->delete();
+
+        return redirect()->route('genres.index');
     }
 }

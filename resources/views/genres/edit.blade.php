@@ -1,0 +1,23 @@
+@extends('layouts.app')
+
+@section('content')
+    <div class="container my-4">
+        <h2 class="text-secondary ms-1 mb-3">Edit Genre</h2>
+        <form class="card p-3" action="{{route('genres.update', $genre)}}" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="mb-3">
+                <label class="form-label ms-1 fs-5" for="genre-name">Name</label>
+                <input class="form-control" type="text" name="name" id="genre-name"
+                placeholder="Insert Genre Name" required value="{{$genre->name}}">
+            </div>
+            <div class="mb-4">
+                <label class="form-label ms-1 fs-5" for="genre-description">Description</label>
+                <textarea class="form-control" name="description" id="genre-description" placeholder="Insert Genre Description">{{$genre->description}}</textarea>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-success px-5 fw-semibold fs-5">Save Genre</button>
+            </div>
+        </form>
+    </div>
+@endsection

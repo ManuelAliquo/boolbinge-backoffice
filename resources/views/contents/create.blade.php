@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container my-5">
+    <div class="container my-4">
+        <h2 class="text-secondary ms-1 mb-3">New Content</h2>
         <form class="card p-3" action="{{route('contents.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             {{-- type - production --}}
@@ -72,7 +73,7 @@
             </div>
             </div>
             <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-success px-5 fw-semibold fs-5">Save Content</button>
+                <button type="submit" class="btn btn-success px-5 fw-semibold fs-5">Add Content</button>
             </div>
         </form>
     </div>
