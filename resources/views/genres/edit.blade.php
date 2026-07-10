@@ -2,7 +2,11 @@
 
 @section('content')
     <div class="container my-4">
-        <h2 class="text-secondary ms-1 mb-3">Edit Genre</h2>
+        <div class="d-flex gap-3 align-items-center ms-1 mb-3">
+            <h2 class="text-secondary mb-1">Edit Genre</h2>
+            <a class="btn btn-outline-dark" href="{{route('genres.index')}}">
+                <i class="bi bi-arrow-left-circle"></i> Back</a>
+        </div>
         <form class="card p-3" action="{{route('genres.update', $genre)}}" method="POST">
             @csrf
             @method('PUT')

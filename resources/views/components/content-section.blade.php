@@ -7,7 +7,7 @@
         <div class="card-body">
             <div class="d-flex gap-2 flex-wrap my-2">
                 @forelse ($content->genres as $genre)
-                    <span class="badge text-bg-info">{{ $genre->name }}</span>
+                <a class="badge text-bg-info" href="{{route('genres.show', $genre)}}">{{ $genre->name }}</a> 
                 @empty
                 @endforelse
             </div>
@@ -24,14 +24,16 @@
             </div>
             <p class="mt-2">{{$content->description}}</p>
             {{-- buttons --}}
-            <div class="d-flex mt-5">
-                <a class="btn btn-warning me-2" href="{{route('contents.edit', $content)}}">
-                    <i class="bi bi-pencil-square"></i> Edit
-                </a>
-                <button class="btn btn-danger" data-bs-toggle="modal"
-                data-bs-target="#deleteModal{{$content->id}}">
-                    <i class="bi bi-trash3"></i> Delete
-                </button>
+            <div class="d-flex justify-content-between mt-5">
+                <div>
+                    <a class="btn btn-warning me-2" href="{{route('contents.edit', $content)}}">
+                        <i class="bi bi-pencil-square"></i> Edit</a>
+                    <button class="btn btn-danger" data-bs-toggle="modal"
+                    data-bs-target="#indexContentDeleteModal{{$content->id}}">
+                        <i class="bi bi-trash3"></i> Delete</button>
+                </div>
+                <a class="btn btn-info border border-dark" href="{{route('contents.show', $content)}}">
+                    <i class="bi bi-info-square"></i> See More</a>
             </div>
         </div>
     </div>
@@ -48,12 +50,12 @@
     </div>
     
 {{-- index content delete modal --}}
-<div class="modal fade" id="deleteModal{{$content->id}}" tabindex="-1"
-    aria-labelledby="deleteModalLabel{{$content->id}}" aria-hidden="true">
+<div class="modal fade" id="indexContentDeleteModal{{$content->id}}" tabindex="-1"
+    aria-labelledby="indexContentDeleteModalLabel{{$content->id}}" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title fw-bold" id="deleteModalLabel">Delete "{{$content->title}}"</h3>
+        <h3 class="modal-title fw-bold" id="indexContentDeleteModalLabel">Delete "{{$content->title}}"</h3>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body fs-5">Sure you want to delete "{{$content->title}}"?</div>
@@ -63,7 +65,7 @@
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-outline-danger fs-5" data-bs-toggle="modal"
-            data-bs-target="#indexDeleteModal">Delete</button>
+            data-bs-target="#indexContentDeleteModal">Delete</button>
         </form>
       </div>
     </div>

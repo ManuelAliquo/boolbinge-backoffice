@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Content;
 use App\Models\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -40,9 +41,10 @@ class GenreController extends Controller
     }
 
     // SHOW
-    public function show(string $id)
+    public function show(Genre $genre)
     {
-        //
+        $contents = $genre->contents;
+        return view('genres.show', compact('genre', 'contents'));
     }
 
     // EDIT
@@ -69,7 +71,6 @@ class GenreController extends Controller
     public function destroy(Genre $genre)
     {
         $genre->delete();
-
         return redirect()->route('genres.index');
     }
 }

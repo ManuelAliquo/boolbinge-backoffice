@@ -12,9 +12,7 @@
             <h3 class="text-secondary ms-1">Movies</h3>
             @foreach ($contents as $content)
                 @if ($content->type === 'movie')
-                <a href="{{route('contents.show', $content)}}">
                     <x-content-section :content="$content"/>
-                </a>
                 @endif
             @endforeach
         </div>
@@ -23,9 +21,7 @@
             <h3 class="text-secondary ms-1">Shows</h3>
             @foreach ($contents as $content)
                 @if ($content->type === 'show')
-                <a href="{{route('contents.show', $content)}}">
                     <x-content-section :content="$content"/>
-                </a>
                 @endif
             @endforeach
         </div>
@@ -34,9 +30,7 @@
             <h3 class="text-secondary ms-1">Anime</h3>
             @foreach ($contents as $content)
                 @if ($content->type === 'anime')
-                <a href="{{route('contents.show', $content)}}">
                     <x-content-section :content="$content"/>
-                </a>
                 @endif
             @endforeach
         </div>

@@ -28,7 +28,8 @@
             {{-- genres --}}
             <div class="d-flex gap-2 flex-wrap mb-3">
                 @forelse ($content->genres as $genre)
-                    <span class="badge text-bg-secondary fs-6 py-2 px-3">{{ $genre->name }}</span>
+                    <a class="badge text-bg-secondary fs-6" href="{{route('genres.show', $genre)}}">
+                        {{ $genre->name }}</a>
                 @empty
                 @endforelse
             </div>
@@ -71,7 +72,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title fw-bold" id="deleteModalLabel">Delete "{{$content->title}}"</h3>
+        <h3 class="modal-title fw-bold" id="showContentDeleteModalLabel">Delete "{{$content->title}}"</h3>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body fs-5">Sure you want to delete "{{$content->title}}"?</div>
