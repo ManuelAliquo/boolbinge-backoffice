@@ -10,4 +10,9 @@ class Genre extends Model
     {
         return $this->belongsToMany(Content::class);
     }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 }

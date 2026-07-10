@@ -11,7 +11,9 @@ Route::middleware('auth')->group(function () {
     })->name('dashboard');
 
     // genre routes
-    Route::resource('genres', AdminGenreController::class);
+    Route::resource('genres', AdminGenreController::class)->except('show');
+    Route::get('/genres/{genre}', [AdminGenreController::class, 'show'])->name('genres.show');
+
     // content routes
     Route::resource('contents', AdminContentController::class)->except('show');
     Route::get('/contents/{content}', [AdminContentController::class, 'show'])->name('contents.show');
