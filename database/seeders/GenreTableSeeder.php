@@ -18,7 +18,11 @@ class GenreTableSeeder extends Seeder
             'Fantasy',
             'Crime',
             'Animation',
-            'Thriller'
+            'Thriller',
+            'Horror',
+            'Historical',
+            'Western',
+            'Comedy'
         ];
 
         foreach ($genres as $genreName) {

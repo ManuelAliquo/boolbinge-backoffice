@@ -39,6 +39,9 @@ class ContentController extends Controller
         $newContent->description = $data['description'];
         $newContent->type = $data['type'];
         $newContent->release_year = $data['release_year'];
+        $newContent->rating = $data['rating'];
+        $newContent->production = $data['production'];
+        $newContent->length = $data['length'];
 
         if (array_key_exists('cover_image', $data)) {
             $imgUrl = Storage::putFile('cover_images', $data['cover_image']);
@@ -78,6 +81,9 @@ class ContentController extends Controller
         $content->description = $data['description'];
         $content->type = $data['type'];
         $content->release_year = $data['release_year'];
+        $content->rating = $data['rating'];
+        $content->production = $data['production'];
+        $content->length = $data['length'];
 
         if (array_key_exists('cover_image', $data)) {
             if ($content->cover_image) Storage::delete($content->cover_image);

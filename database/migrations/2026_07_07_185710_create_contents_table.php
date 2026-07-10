@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->enum('type', ['movie', 'show', 'anime']);
             $table->string('cover_image')->nullable();
             $table->year('release_year');

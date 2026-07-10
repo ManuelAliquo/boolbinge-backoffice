@@ -5,35 +5,58 @@
         <form class="card p-3" action="{{route('contents.update', $content)}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            {{-- type --}}
-            <div class="mb-3">
-                <label class="form-label fs-5" for="content-type">Type</label>
-                <select id="content-type" class="form-select" name="type" required>
-                    <option value="">Select Content Type</option>
-                    @foreach ($types as $type)
-                    <option {{$content->type == $type ? 'selected' : ''}} value="{{$type}}">
-                        {{ucfirst($type)}}
-                    </option>
-                    @endforeach
-                </select>
+            {{-- type - production --}}
+            <div class="row mb-3 g-3">
+                <div class="col-12 col-sm-6">
+                    <label class="form-label fs-5" for="content-type">Type</label>
+                    <select id="content-type" class="form-select" name="type" required>
+                        <option value="">Select Content Type</option>
+                        @foreach ($types as $type)
+                        <option {{$content->type == $type ? 'selected' : ''}} value="{{$type}}">
+                            {{ucfirst($type)}}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <label class="form-label ms-1 fs-5" for="content-production">Production</label>
+                    <input class="form-control" type="text" name="production" id="content-production"
+                    placeholder="Director / Network / Studio" value="{{$content->production}}">
+                </div>
             </div>
-            {{-- title --}}
-            <div class="mb-3">
-                <label class="form-label fs-5" for="content-title">Title</label>
-                <input class="form-control" id="content-title" name="title"
-                type="text" placeholder="Insert Content Title" value="{{$content->title}}" required>
+            {{-- title - length --}}
+            <div class="row mb-3 g-3">
+                <div class="col-12 col-sm-8">
+                    <label class="form-label ms-1 fs-5" for="content-title">Title</label>
+                    <input class="form-control" id="content-title" name="title"
+                    type="text" placeholder="Insert Content Title" required value="{{$content->title}}">
+                </div>
+                <div class="col-12 col-sm-4">
+                    <label class="form-label ms-1 fs-5" for="content-length">Lenght</label>
+                    <input class="form-control" id="content-length" name="length"
+                    type="text" placeholder="(x)h (x)min / (x) episodes" value="{{$content->length}}">
+                </div>
             </div>
-            {{-- year --}}
-            <div class="mb-3">
-                <label class="form-label fs-5" for="content-year">Release Year</label>
-                <input class="form-control" id="content-year" name="release_year" type="number"
-                 placeholder="Insert Release Year" min="1900" max="2030" value="{{$content->release_year}}" required>
+            {{-- year - rating --}}
+            <div class="row mb-3 g-3">
+                <div class="col-12 col-sm-6">
+                    <label class="form-label ms-1 fs-5" for="content-year">Release Year</label>
+                    <input class="form-control" id="content-year" name="release_year" type="number"
+                     placeholder="Insert Release Year" min="1900" max="2030"
+                     required value="{{$content->release_year}}">
+                </div>
+                <div class="col-12 col-sm-6">
+                    <label class="form-label ms-1 fs-5" for="content-rating">Rating</label>
+                    <input class="form-control" id="content-rating" name="rating" type="number"
+                    placeholder="Insert Rating" min="0" max="10" step="0.1"
+                    value="{{$content->rating}}">
+                </div>
             </div>
             {{-- description --}}
             <div class="mb-2">
                 <label class="form-label fs-5" for="content-description">Description</label>
                 <textarea class="form-control" id="content-description" name="description"
-                placeholder="Insert Content Description" required>{{$content->description}}</textarea>
+                placeholder="Insert Content Description">{{$content->description}}</textarea>
             </div>
             {{-- img --}}
             <div class="card p-2 mb-2">
