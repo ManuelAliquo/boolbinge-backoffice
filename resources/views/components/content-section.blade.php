@@ -1,32 +1,34 @@
 <div class="card mb-3 d-flex flex-column flex-sm-row overflow-hidden">
     {{-- info --}}
-    <div class="flex-grow-1">
+    <div class="flex-grow-1 d-flex flex-column">
         <div class="fs-5 bg-dark-subtle px-3 py-2">
             <b class="fs-5">{{$content->title}}</b> - {{$content->release_year}}
         </div>
-        <div class="card-body">
-            <div class="d-flex gap-2 flex-wrap my-2">
-                @forelse ($content->genres as $genre)
-                <a class="badge text-bg-info" href="{{route('genres.show', $genre)}}">{{ $genre->name }}</a> 
-                @empty
-                @endforelse
+        <div class="card-body d-flex flex-column flex-grow-1">
+            <div>
+                <div class="d-flex gap-2 flex-wrap my-2">
+                    @forelse ($content->genres as $genre)
+                    <a class="badge text-bg-info" href="{{route('genres.show', $genre)}}">{{ $genre->name }}</a> 
+                    @empty
+                    @endforelse
+                </div>
+                <div class="fw-semibold">
+                    @if ($content->production)
+                    <span>{{$content->production}} - </span>
+                    @endif
+                    @if ($content->rating)
+                    <span><i class="bi bi-star-fill text-warning"></i> {{$content->rating}} - </span>
+                    @endif
+                    @if ($content->length)
+                    <span><i class="bi bi-clock text-muted"></i> {{$content->length}}</span>
+                    @endif
+                </div>
+                <p class="mt-2">{{$content->description}}</p>
             </div>
-            <div class="fw-semibold">
-                @if ($content->production)
-                <span>{{$content->production}} - </span>
-                @endif
-                @if ($content->rating)
-                <span><i class="bi bi-star-fill text-warning"></i> {{$content->rating}} - </span>
-                @endif
-                @if ($content->length)
-                <span><i class="bi bi-clock text-muted"></i> {{$content->length}}</span>
-                @endif
-            </div>
-            <p class="mt-2">{{$content->description}}</p>
             {{-- buttons --}}
-            <div class="d-flex justify-content-between mt-5">
+            <div class="d-flex justify-content-between align-items-center mt-auto pt-3">
                 <div>
-                    <a class="btn btn-warning me-2" href="{{route('contents.edit', $content)}}">
+                    <a class="btn btn-warning me-1" href="{{route('contents.edit', $content)}}">
                         <i class="bi bi-pencil-square"></i> Edit</a>
                     <button class="btn btn-danger" data-bs-toggle="modal"
                     data-bs-target="#indexContentDeleteModal{{$content->id}}">
