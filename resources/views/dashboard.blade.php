@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1 class="text-center text-secondary mt-4 mb-5">Dashboard</h1>
+    <h1 class="text-center text-secondary my-5">Dashboard</h1>
     <div class="dashboard-panel m-auto">
         <div class="d-flex gap-3 mb-4">
             <div class="d-flex flex-column flex-grow-1">

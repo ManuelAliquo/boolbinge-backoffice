@@ -1,91 +1,99 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container my-3">
-    <div class="row border rounded-3 p-2">
-        <div class="col-12 col-sm-6 col-lg-5 col-xl-4 d-flex align-items-center">
-            {{-- image --}}
-            <div class="cover-image rounded-3 border mb-3 overflow-hidden">
+<div class="container my-4">
+    <div class="row border rounded-3 p-3 bg-white shadow-sm">
+        {{-- IMAGE --}}
+        <div class="col-12 col-sm-8 mx-sm-auto col-md-5 col-lg-4 d-flex align-items-center justify-content-center mb-3 mb-md-0">
+            <div class="cover-image rounded-3 border overflow-hidden w-100 shadow-sm">
                 @if($content->cover_image)
-                    <img class="img-fluid" alt="{{ $content->title }}"
-                        src="{{ str_starts_with($content->cover_image, 'imgs/') ? asset($content->cover_image) : asset('storage/' . $content->cover_image) }}">
+                    <img class="img-fluid w-100 h-100 object-fit-cover" alt="{{$content->title}}"
+                        src="{{str_starts_with($content->cover_image, 'imgs/') ? asset($content->cover_image) : asset('storage/' . $content->cover_image)}}">
                 @else
-                    <img class="img-fluid" src="{{ asset('imgs/placeholder.png') }}" alt="placeholder">
+                    <img class="img-fluid w-100 h-100 object-fit-cover" src="{{asset('imgs/placeholder.png')}}" alt="placeholder">
                 @endif
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-lg-7 col-xl-8 d-flex flex-column content-info">
-            {{-- title - year - length --}}
-            <div class="mb-2 mt-4">
-                <h1 class="fw-bold mb-1">{{$content->title}}</h1>
-                <div class="text-muted">
-                    <span>{{$content->release_year}} - </span>
+        {{-- INFO --}}
+        <div class="col-12 col-md-7 col-lg-8 mt-lg-3 d-flex flex-column content-info">
+            {{-- title - production - year - status --}}
+            <div class="mb-3">
+                <div class="d-flex align-items-center flex-wrap gap-2 mb-1">
+                    <h1 class="fw-bold mb-0">{{ $content->title }}</h1>
+                    @if($content->type !== 'movie')
+                        <span class="badge {{$content->end_year ? 'text-bg-secondary' : 'text-bg-success'}} shadow-sm">
+                            {{$content->end_year ? 'Ended' : 'Ongoing'}}
+                        </span>
+                    @endif
+                </div>
+                <div class="fs-5 text-secondary">
+                    @if ($content->production)
+                        <span class="fw-semibold text-dark">{{$content->production}}</span>
+                        <span> - </span>
+                    @endif
+                    <span>
+                        {{$content->release_year}}
+                        {{$content->type !== 'movie' && $content->end_year ? ' - ' . $content->end_year : ''}}
+                    </span>
+                </div>
+                {{-- length - rating --}}
+                <div class="text-muted mt-2 fw-semibold">
                     @if ($content->length)
-                    <span><i class="bi bi-clock text-muted"></i> {{$content->length}}</span>
+                        <span>
+                            <i class="bi bi-film text-muted"></i> {{$content->length}}
+                        </span>
+                    @endif
+                    @if ($content->rating)
+                        @if ($content->length) <span> - </span> @endif
+                        <span class="text-dark">
+                            <i class="bi bi-star-fill text-warning fs-5"></i>
+                            {{$content->rating}}<small class="text-muted">/10</small>
+                        </span>
                     @endif
                 </div>
             </div>
-            {{-- genres --}}
-            <div class="d-flex gap-2 flex-wrap mb-3">
-                @forelse ($content->genres as $genre)
-                    <a class="badge text-bg-secondary fs-6" href="{{route('genres.show', $genre)}}">
-                        {{ $genre->name }}</a>
-                @empty
-                @endforelse
-            </div>
-            {{-- production - short_description - rating--}}
-            <div class="card mb-3">
-                @if ($content->production)
-                <div class="fs-5 bg-dark-subtle px-3 py-2 fw-semibold">{{$content->production}}</div>
-                @endif
-                <div class="card-body pt-2">
-                    @if ($content->short_description)
-                        <p class="mb-0">{{$content->short_description}}</p>
-                    @else
-                        <p>---</p>
+            {{-- details --}}
+            <div class="card mb-3 shadow-sm">
+                {{-- genres --}}
+                <div class="d-flex gap-2 flex-wrap bg-dark-subtle p-3">
+                    @forelse ($content->genres as $genre)
+                        <a class="badge text-bg-secondary fs-6 text-decoration-none"
+                        href="{{route('genres.show', $genre)}}">{{$genre->name}}</a>
+                    @empty
+                        <span class="text-muted">No genres assigned</span>
+                    @endforelse
+                </div>
+                <div class="card-body">
+                    {{-- description - trailer --}}
+                    @if ($content->long_description)
+                        <p class="fw-semibold mb-0">{{$content->long_description}}</p>
                     @endif
-                    @if ($content->rating)
-                    <div class="text-end fw-semibold">
-                        <i class="bi bi-star-fill text-warning fs-5"></i> {{$content->rating}}<small class="text-muted">/10</small>
-                    </div>
+                    @if ($content->trailer)
+                        <div class="mt-3 pt-2">
+                            <a href="{{$content->trailer}}" target="_blank" class="btn btn-danger px-3 shadow-sm">
+                                <i class="bi bi-play-btn-fill"></i> Watch Trailer
+                            </a>
+                        </div>
                     @endif
                 </div>
             </div>
             {{-- buttons --}}
-            <div class="d-flex align-items-center justify-content-center justify-content-sm-end mt-3 gap-2 mt-auto">
+            <div class="d-flex align-items-center justify-content-center justify-content-sm-end gap-2 mt-auto pt-3">
                 <a class="btn btn-outline-dark" href="{{route('contents.index')}}">
                     <i class="bi bi-arrow-left-circle"></i> Back
                 </a>
                 <a class="btn btn-warning" href="{{route('contents.edit', $content)}}">
                     <i class="bi bi-pencil-square"></i> Edit
                 </a>
-                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#showContentDeleteModal">
+                <button class="btn btn-danger" data-bs-toggle="modal"
+                data-bs-target="#indexContentDeleteModal{{$content->id}}">
                     <i class="bi bi-trash3"></i> Delete
                 </button>
             </div>
+
         </div>
     </div>
 </div>
 
-{{-- show content delete modal --}}
-<div class="modal fade" id="showContentDeleteModal" tabindex="-1" aria-labelledby="showContentDeleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title fw-bold" id="showContentDeleteModalLabel">Delete "{{$content->title}}"</h3>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body fs-5">Sure you want to delete "{{$content->title}}"?</div>
-      <div class="modal-footer">
-        <button class="btn btn-primary fs-5" data-bs-dismiss="modal">Dismiss</button>
-        <form action="{{route('contents.destroy', $content)}}" method="POST">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-outline-danger fs-5" data-bs-toggle="modal"
-            data-bs-target="#deleteModal">Delete</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>    
+<x-content-delete-modal :content="$content" />
 @endsection

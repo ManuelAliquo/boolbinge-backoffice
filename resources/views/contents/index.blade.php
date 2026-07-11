@@ -15,7 +15,7 @@
                 <div class="card mb-3 d-flex flex-column flex-sm-row overflow-hidden">
                     <div class="flex-grow-1 d-flex flex-column">
                         <div class="bg-dark-subtle px-3 py-2">
-                            <b class="fs-4">{{$content->title}}</b> - {{$content->release_year}}
+                            <b class="fs-4 mb-1">{{$content->title}}</b> - {{$content->release_year}}
                         </div>
                         <div class="card-body d-flex flex-column flex-grow-1">
                             <div>
@@ -37,7 +37,7 @@
                                 </div>
                                 <p class="mt-2">{{$content->short_description}}</p>
                             </div>
-                            <div class="d-flex justify-content-between align-items-center mt-auto pt-3">
+                            <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top">
                                 <div>
                                     <a class="btn btn-warning me-1" href="{{route('contents.edit', $content)}}">
                                         <i class="bi bi-pencil-square"></i> Edit
@@ -68,10 +68,10 @@
                 <div class="card mb-3 d-flex flex-column flex-sm-row overflow-hidden">
                     <div class="flex-grow-1 d-flex flex-column">
                         <div class="bg-dark-subtle px-3 py-2 d-flex align-items-center flex-wrap gap-2">
-                            <b class="fs-4">{{$content->title}}</b> 
+                            <b class="fs-4 mb-1">{{$content->title}}</b> 
                             <span class="text-muted">
-                                ({{$content->release_year}}
-                                {{$content->end_year ? ' - ' . $content->end_year : ''}})
+                                {{$content->release_year}}
+                                {{$content->end_year ? ' - ' . $content->end_year : ''}}
                             </span>
                             <span class="badge {{$content->end_year ? 'text-bg-secondary' : 'text-bg-success'}}">
                                 {{$content->end_year ? 'Ended' : 'Ongoing'}}
@@ -97,7 +97,7 @@
                                 </div>
                                 <p class="mt-2">{{$content->short_description}}</p>
                             </div>
-                            <div class="d-flex justify-content-between align-items-center mt-auto pt-3">
+                            <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top">
                                 <div>
                                     <a class="btn btn-warning me-1" href="{{route('contents.edit', $content)}}">
                                         <i class="bi bi-pencil-square"></i> Edit
@@ -128,10 +128,10 @@
                 <div class="card mb-3 d-flex flex-column flex-sm-row overflow-hidden">
                     <div class="flex-grow-1 d-flex flex-column">
                         <div class="bg-dark-subtle px-3 py-2 d-flex align-items-center flex-wrap gap-2">
-                            <b class="fs-4">{{$content->title}}</b> 
+                            <b class="fs-4 mb-1">{{$content->title}}</b> 
                             <span class="text-muted">
-                                ({{$content->release_year}}
-                                {{$content->end_year ? ' - ' . $content->end_year : ''}})
+                                {{$content->release_year}}
+                                {{$content->end_year ? ' - ' . $content->end_year : ''}}
                             </span>
                             <span class="badge {{$content->end_year ? 'text-bg-secondary' : 'text-bg-success'}}">
                                 {{$content->end_year ? 'Ended' : 'Ongoing'}}
@@ -151,7 +151,7 @@
                                 </div>
                                 <p class="mt-2">{{$content->short_description}}</p>
                             </div>
-                            <div class="d-flex justify-content-between align-items-center mt-auto pt-3">
+                            <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top">
                                 <div>
                                     <a class="btn btn-warning me-1" href="{{route('contents.edit', $content)}}">
                                         <i class="bi bi-pencil-square"></i> Edit

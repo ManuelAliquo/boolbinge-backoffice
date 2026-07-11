@@ -9,7 +9,7 @@
     </div>
     <h3 class="text-secondary ms-1 mb-3">All Genres</h3>
     @foreach ($genres as $genre)
-    <div class="mb-3 border rounded-3 p-3">
+    <div class="mb-3 border rounded-3 p-3 bg-white shadow-sm">
         <div class="d-flex flex-column flex-md-row align-items-center gap-3">
             <a class="btn btn-secondary fw-semibold fs-5 flex-shrink-0" href="{{route('genres.show', $genre)}}">{{$genre->name}}</a>
             <p class="m-0 flex-grow-1 border rounded-4 p-3">
