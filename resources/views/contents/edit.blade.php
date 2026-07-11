@@ -57,11 +57,11 @@
                     value="{{$content->rating}}">
                 </div>
             </div>
-            {{-- description --}}
+            {{-- short_description --}}
             <div class="mb-2">
-                <label class="form-label fs-5" for="content-description">Description</label>
-                <textarea class="form-control" id="content-description" name="description"
-                placeholder="Insert Content Description">{{$content->description}}</textarea>
+                <label class="form-label fs-5" for="content-shortDescription">Short Description</label>
+                <textarea class="form-control" id="content-shortDescription" name="short_description"
+                placeholder="Insert Content Short Description">{{$content->short_description}}</textarea>
             </div>
             {{-- img --}}
             <div class="card p-2 mb-2">
@@ -71,8 +71,8 @@
                         <input class="form-control" type="file" id="content-image" name="cover_image">
                     </div>
                     @if($content->cover_image)
-                        <img src="{{ asset('storage/' . $content->cover_image) }}"
-                        alt="preview" class="img-thumbnail" style="max-height: 180px;">
+                        <img alt="preview" class="img-thumbnail" 
+                        style="max-height: 180px; width: auto; object-fit: cover;" src="{{ str_starts_with($content->cover_image, 'imgs/') ? asset($content->cover_image) : asset('storage/' . $content->cover_image) }}">                            
                     @endif
                 </div>
             </div>

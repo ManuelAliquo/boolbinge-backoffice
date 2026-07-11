@@ -52,11 +52,11 @@
                     placeholder="Insert Rating" min="0" max="10" step="0.1">
                 </div>
             </div>
-            {{-- description --}}
+            {{-- short-description --}}
             <div class="mb-2">
-                <label class="form-label ms-1 fs-5" for="content-description">Description</label>
-                <textarea class="form-control" id="content-description" name="description"
-                placeholder="Insert Content Description"></textarea>
+                <label class="form-label ms-1 fs-5" for="content-shortDescription">Short Description</label>
+                <textarea class="form-control" id="content-shortDescription" name="short_description"
+                placeholder="Insert Content Short Description"></textarea>
             </div>
             {{-- img --}}
             <div class="mb-3">

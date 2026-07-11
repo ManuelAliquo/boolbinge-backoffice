@@ -14,8 +14,11 @@ class ContentController extends Controller
     // INDEX
     public function index()
     {
-        $contents = Content::all();
-        return view('contents.index', compact('contents'));
+        $movies = Content::where('type', 'movie')->get();
+        $shows  = Content::where('type', 'show')->get();
+        $anime  = Content::where('type', 'anime')->get();
+
+        return view('contents.index', compact('movies', 'shows', 'anime'));
     }
 
     // CREATE
@@ -36,9 +39,12 @@ class ContentController extends Controller
 
         $newContent->title = $data['title'];
         $newContent->slug = $slug;
-        $newContent->description = $data['description'];
+        $newContent->short_description = $data['short_description'];
+        $newContent->long_description = $data['long_description'];
+        $newContent->trailer = $data['trailer'];
         $newContent->type = $data['type'];
         $newContent->release_year = $data['release_year'];
+        $newContent->end_year = ($data['type'] !== 'movie') ? $data['end_year'] : null;
         $newContent->rating = $data['rating'];
         $newContent->production = $data['production'];
         $newContent->length = $data['length'];
@@ -52,7 +58,7 @@ class ContentController extends Controller
 
         if (isset($data['genres'])) $newContent->genres()->attach($data['genres']);
 
-        return redirect('contents');
+        return redirect()->route('contents.index');
     }
 
     // SHOW
@@ -78,15 +84,20 @@ class ContentController extends Controller
 
         $content->title = $data['title'];
         $content->slug = $slug;
-        $content->description = $data['description'];
+        $content->short_description = $data['short_description'];
+        $content->long_description = $data['long_description'];
+        $content->trailer = $data['trailer'];
         $content->type = $data['type'];
         $content->release_year = $data['release_year'];
+        $content->end_year = ($data['type'] !== 'movie') ? $data['end_year'] : null;
         $content->rating = $data['rating'];
         $content->production = $data['production'];
         $content->length = $data['length'];
 
         if (array_key_exists('cover_image', $data)) {
-            if ($content->cover_image) Storage::delete($content->cover_image);
+            if ($content->cover_image && !str_starts_with($content->cover_image, 'imgs/')) {
+                Storage::delete($content->cover_image);
+            }
 
             $imgUrl = Storage::putFile('cover_images', $data['cover_image']);
             $content->cover_image = $imgUrl;
@@ -103,10 +114,11 @@ class ContentController extends Controller
     // DELETE
     public function destroy(Content $content)
     {
-        if ($content->cover_image) Storage::delete($content->cover_image);
+        if ($content->cover_image && !str_starts_with($content->cover_image, 'imgs/')) {
+            Storage::delete($content->cover_image);
+        }
 
         $content->delete();
-
         return redirect()->route('contents.index');
     }
 }

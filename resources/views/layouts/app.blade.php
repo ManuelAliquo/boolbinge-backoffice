@@ -15,12 +15,12 @@
     @vite(['resources/js/app.js'])
 </head>
 
-<body>
+<body class="bg-body-tertiary">
 <div id="app">
     {{-- HEADER --}}
     <header>
         {{-- Nav --}}
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md shadow-sm navbar-dark bg-dark">
             <div class="container pt-1">
                 {{-- brand --}}
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
