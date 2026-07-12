@@ -13,47 +13,76 @@ document.addEventListener("DOMContentLoaded", () => {
     const lengthInput = document.getElementById("content-length");
     const productionInput = document.getElementById("content-production");
 
-    if (!contentTypeSelect) return;
+    if (contentTypeSelect) {
+        const handleTypeChange = () => {
+            const selectedType = contentTypeSelect.value;
 
-    const handleTypeChange = () => {
-        const selectedType = contentTypeSelect.value;
+            if (selectedType === "movie") {
+                endYearWrapper.classList.add("d-none");
+                endYearInput.value = "";
+                lengthInput.placeholder = "e.g., 2h 15min";
+                productionInput.placeholder = "Insert Director";
+            } else if (selectedType === "show") {
+                endYearWrapper.classList.remove("d-none");
+                lengthInput.placeholder = "e.g., 5 Seasons (24 eps)";
+                productionInput.placeholder = "Insert Network";
+            } else if (selectedType === "anime") {
+                endYearWrapper.classList.remove("d-none");
+                lengthInput.placeholder = "e.g., 2 Seasons (24 eps)";
+                productionInput.placeholder = "Insert Production Studio";
+            } else {
+                endYearWrapper.classList.add("d-none");
+                lengthInput.placeholder = "Select type first...";
+                productionInput.placeholder = "Select type first...";
+            }
+        };
 
-        if (selectedType === "movie") {
-            // movie
-            endYearWrapper.classList.add("d-none");
-            endYearInput.value = "";
-            lengthInput.placeholder = "e.g., 2h 15min";
-            productionInput.placeholder = "Insert Director";
-        } else if (selectedType === "show") {
-            //show
-            endYearWrapper.classList.remove("d-none");
-            lengthInput.placeholder = "e.g., 5 Seasons (24 eps)";
-            productionInput.placeholder = "Insert Network";
-            // anime
-        } else if (selectedType === "anime") {
-            endYearWrapper.classList.remove("d-none");
-            lengthInput.placeholder = "e.g., 2 Seasons (24 eps)";
-            productionInput.placeholder = "Insert Production Studio";
-        } else {
-            // no type selected
-            endYearWrapper.classList.add("d-none");
-            lengthInput.placeholder = "Select type first...";
-            productionInput.placeholder = "Select type first...";
-        }
-    };
-
-    handleTypeChange();
-
-    contentTypeSelect.addEventListener("change", handleTypeChange);
+        handleTypeChange();
+        contentTypeSelect.addEventListener("change", handleTypeChange);
+    }
 
     // ANTI SPAM-SUBMIT
     const forms = document.querySelectorAll("form");
-
     forms.forEach((form) => {
         form.addEventListener("submit", (e) => {
             const submitBtn = form.querySelector("button[type='submit']");
-
             if (submitBtn) submitBtn.disabled = true;
         });
     });
+
+    // PERFORMERS FILTER
+    const performersFilter = document.getElementById("performers-filter");
+    const performersList = document.getElementById("performers-list");
+
+    if (performersFilter && performersList) {
+        const performerItems =
+            performersList.querySelectorAll(".performer-item");
+        const noResultsMessage = document.getElementById(
+            "no-performers-message",
+        );
+
+        performersFilter.addEventListener("input", () => {
+            const search = performersFilter.value.toLowerCase().trim();
+            let results = false;
+
+            performerItems.forEach((item) => {
+                const name = item
+                    .querySelector("label")
+                    .innerText.toLowerCase();
+
+                if (search === "") {
+                    item.style.display = "";
+                    results = true;
+                } else {
+                    const matches = name.includes(search);
+                    item.style.display = matches ? "" : "none";
+                    if (matches) results = true;
+                }
+            });
+
+            if (!results && search !== "")
+                noResultsMessage.classList.remove("d-none");
+            else noResultsMessage.classList.add("d-none");
+        });
+    }
 });

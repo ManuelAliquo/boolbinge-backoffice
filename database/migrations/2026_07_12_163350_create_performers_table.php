@@ -6,19 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    // Run the migrations 
+    // Run the migrations
     public function up(): void
     {
-        Schema::create('content_genre', function (Blueprint $table) {
+        Schema::create('performers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('content_id')->constrained()->onDelete('cascade');
-            $table->foreignId('genre_id')->constrained()->onDelete('cascade');
+            $table->string('name');
+            $table->string('slug');
+            $table->string('picture')->nullable();
+            $table->timestamps();
         });
     }
 
     // Reverse the migrations
     public function down(): void
     {
-        Schema::dropIfExists('content_genre');
+        Schema::dropIfExists('performers');
     }
 };

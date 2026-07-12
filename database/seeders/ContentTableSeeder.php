@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Content;
 use App\Models\Genre;
+use App\Models\Performer;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -27,6 +28,7 @@ class ContentTableSeeder extends Seeder
                 'production' => 'Alejandro González Iñárritu',
                 'length' => '2h 36min',
                 'genres' => ['Adventure', 'Drama', 'Historical', 'Western'],
+                'performers' => ['Leonardo DiCaprio', 'Tom Hardy'],
             ],
             [
                 'title' => 'The Lord of the Rings: The Return of the King',
@@ -41,6 +43,7 @@ class ContentTableSeeder extends Seeder
                 'production' => 'Peter Jackson',
                 'length' => '3h 21min',
                 'genres' => ['Action', 'Adventure', 'Fantasy', 'Drama'],
+                'performers' => ['Elijah Wood', 'Viggo Mortensen', 'Ian McKellen'],
             ],
             [
                 'title' => 'Interstellar',
@@ -55,6 +58,7 @@ class ContentTableSeeder extends Seeder
                 'production' => 'Christopher Nolan',
                 'length' => '2h 49min',
                 'genres' => ['Adventure', 'Sci-Fi', 'Drama'],
+                'performers' => ['Matthew McConaughey', 'Anne Hathaway'],
             ],
             [
                 'title' => 'Kill Bill - Volume 1',
@@ -69,6 +73,7 @@ class ContentTableSeeder extends Seeder
                 'production' => 'Quentin Tarantino',
                 'length' => '1h 51min',
                 'genres' => ['Action', 'Crime', 'Thriller'],
+                'performers' => ['Uma Thurman', 'Lucy Liu'],
             ],
 
             // SHOWS
@@ -85,6 +90,7 @@ class ContentTableSeeder extends Seeder
                 'production' => 'HBO',
                 'length' => '8 Seasons (73 eps)',
                 'genres' => ['Action', 'Adventure', 'Drama', 'Fantasy'],
+                'performers' => ['Kit Harington', 'Emilia Clarke', 'Peter Dinklage'],
             ],
             [
                 'title' => 'Breaking Bad',
@@ -99,6 +105,7 @@ class ContentTableSeeder extends Seeder
                 'production' => 'AMC',
                 'length' => '5 Seasons (62 eps)',
                 'genres' => ['Crime', 'Drama', 'Thriller'],
+                'performers' => ['Bryan Cranston', 'Aaron Paul'],
             ],
             [
                 'title' => 'Stranger Things',
@@ -113,6 +120,7 @@ class ContentTableSeeder extends Seeder
                 'production' => 'Netflix',
                 'length' => '5 Seasons (42 eps)',
                 'genres' => ['Drama', 'Fantasy', 'Horror', 'Sci-Fi'],
+                'performers' => ['Millie Bobby Brown', 'David Harbour'],
             ],
             [
                 'title' => 'Invincible',
@@ -127,6 +135,7 @@ class ContentTableSeeder extends Seeder
                 'production' => 'Prime Video',
                 'length' => '4 Seasons (48 eps)',
                 'genres' => ['Action', 'Adventure', 'Animation'],
+                'performers' => ['Steven Yeun', 'J.K. Simmons'],
             ],
 
             // ANIME
@@ -143,6 +152,7 @@ class ContentTableSeeder extends Seeder
                 'production' => 'MAPPA',
                 'length' => '3 Seasons (59 eps)',
                 'genres' => ['Action', 'Animation', 'Fantasy'],
+                'performers' => null
             ],
             [
                 'title' => 'Attack on Titan',
@@ -156,7 +166,8 @@ class ContentTableSeeder extends Seeder
                 'rating' => 9.1,
                 'production' => 'WIT Studio / MAPPA',
                 'length' => '4 Seasons (94 eps)',
-                'genres' => ['Action', 'Animation', 'Fantasy', 'Drama'],
+                'genres' => ['Action', 'Animation', 'Drama', 'Fantasy'],
+                'performers' => null
             ],
             [
                 'title' => 'Demon Slayer',
@@ -171,6 +182,7 @@ class ContentTableSeeder extends Seeder
                 'production' => 'Ufotable',
                 'length' => '4 Seasons (63 eps)',
                 'genres' => ['Action', 'Adventure', 'Animation', 'Fantasy'],
+                'performers' => null
             ],
             [
                 'title' => 'Death Note',
@@ -185,6 +197,7 @@ class ContentTableSeeder extends Seeder
                 'production' => 'Madhouse',
                 'length' => '1 Season (37 eps)',
                 'genres' => ['Animation', 'Crime', 'Drama', 'Thriller'],
+                'performers' => null
             ],
         ];
 
@@ -208,6 +221,12 @@ class ContentTableSeeder extends Seeder
             // genres association
             $genres = Genre::whereIn('name', $content['genres'])->get();
             $newContent->genres()->attach($genres);
+
+            // performer association
+            if (!empty($content['performers']) && is_array($content['performers'])) {
+                $performers = Performer::whereIn('name', $content['performers'])->get();
+                $newContent->performers()->attach($performers);
+            }
         }
     }
 }

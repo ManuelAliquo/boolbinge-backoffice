@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ContentController as AdminContentController;
 use App\Http\Controllers\Admin\GenreController as AdminGenreController;
+use App\Http\Controllers\Admin\PerformerController as AdminPerformerController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +14,10 @@ Route::middleware('auth')->group(function () {
     // genre routes
     Route::resource('genres', AdminGenreController::class)->except('show');
     Route::get('/genres/{genre}', [AdminGenreController::class, 'show'])->name('genres.show');
+
+    // performer routes
+    Route::resource('performers', AdminPerformerController::class)->except('show');
+    Route::get('/performers/{performer}', [AdminPerformerController::class, 'show'])->name('performers.show');
 
     // content routes
     Route::resource('contents', AdminContentController::class)->except('show');

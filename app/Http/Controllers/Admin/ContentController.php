@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Content;
 use App\Models\Genre;
+use App\Models\Performer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -26,7 +27,8 @@ class ContentController extends Controller
     {
         $types = ['movie', 'show', 'anime'];
         $genres = Genre::all();
-        return view('contents.create', compact('genres', 'types'));
+        $performers = Performer::all();
+        return view('contents.create', compact('genres', 'types', 'performers'));
     }
 
     // STORE
@@ -56,6 +58,8 @@ class ContentController extends Controller
 
         if (isset($data['genres'])) $newContent->genres()->attach($data['genres']);
 
+        if (isset($data['performers'])) $newContent->performers()->attach($data['performers']);
+
         return redirect()->route('contents.show', $newContent);
     }
 
@@ -70,7 +74,8 @@ class ContentController extends Controller
     {
         $types = ['movie', 'show', 'anime'];
         $genres = Genre::all();
-        return view('contents.edit', compact('content', 'genres', 'types'));
+        $performers = Performer::all();
+        return view('contents.edit', compact('content', 'genres', 'types', 'performers'));
     }
 
     // UPDATE
@@ -103,6 +108,9 @@ class ContentController extends Controller
 
         if (isset($data['genres'])) $content->genres()->sync($data['genres']);
         else $content->genres()->sync([]);
+
+        if (isset($data['performers'])) $content->performers()->sync($data['performers']);
+        else $content->performers()->sync([]);
 
         return redirect()->route('contents.show', $content);
     }

@@ -75,6 +75,20 @@
                             </a>
                         </div>
                     @endif
+                    {{-- performers --}}
+                    @if($content->performers && $content->performers->isNotEmpty())
+                        <div class="mt-3 pt-3 border-top">
+                            <span class="text-secondary d-block mb-3 fs-5 fw-semibold">Performers</span>
+                            <div class="d-flex gap-2 flex-wrap">
+                                @foreach ($content->performers as $performer)
+                                    <a class="btn btn-light py-1 border shadow-sm fs-6 fw-normal"
+                                    href="{{route('performers.show', $performer)}}">
+                                        <i class="text-muted bi bi-people-fill me-1"></i> {{$performer->name}}
+                                    </a>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
             {{-- buttons --}}
@@ -94,6 +108,6 @@
         </div>
     </div>
 </div>
-
+{{-- delete modal --}}
 <x-content-delete-modal :content="$content"/>
 @endsection

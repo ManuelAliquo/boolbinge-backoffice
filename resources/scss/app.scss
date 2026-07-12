@@ -5,10 +5,30 @@ a {
     color: inherit;
 }
 
+.navbar-brand > img {
+    height: 57px;
+    width: auto;
+}
+
 .cover-image {
     display: flex;
     justify-content: center;
     box-shadow: 0 2px 3px 2px rgba($color: #000000, $alpha: 0.5);
+}
+
+.content-thumbnail {
+    max-height: 180px;
+    width: auto;
+    object-fit: cover;
+}
+
+.performers-results {
+    max-height: 180px;
+}
+
+.performer-avatar {
+    width: 50px;
+    height: 50px;
 }
 
 @media (min-width: 576px) {

@@ -96,6 +96,27 @@
                     @endforeach
                 </div>
             </div>
+            {{-- performers --}}
+            <div class="mb-4">
+                <label class="form-label ms-1 fs-5">Performers</label>
+                <input type="text" id="performers-filter" class="form-control mb-2"
+                    placeholder="Insert the Performer's Name...">
+                <div class="performers-results border rounded p-3 bg-white overflow-y-auto"
+                id="performers-list">
+                    @foreach ($performers as $performer)
+                        <div class="performer-item form-check mb-2">
+                            <input class="form-check-input" type="checkbox" name="performers[]" 
+                                id="performer-{{ $performer->id }}" value="{{ $performer->id }}">
+                            <label class="form-check-label d-block w-100" for="performer-{{ $performer->id }}">
+                                {{ $performer->name }}
+                            </label>
+                        </div>
+                    @endforeach
+                    <div id="no-performers-message" class="text-muted alert alert-warning d-none">
+                        <i class="bi bi-exclamation-circle me-1"></i> Performer not found.
+                    </div>
+                </div>
+            </div>
             {{-- submit --}}
             <div class="d-flex justify-content-center">
                 <button type="submit" class="btn btn-success px-5 fw-semibold fs-5 shadow-sm">Add Content</button>

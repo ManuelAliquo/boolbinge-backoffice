@@ -11,7 +11,12 @@ class Content extends Model
         return $this->belongsToMany(Genre::class);
     }
 
-    public function getRouteKeyName(): string
+    public function performers()
+    {
+        return $this->belongsToMany(Performer::class);
+    }
+
+    public function getRouteKeyName()
     {
         return 'slug';
     }
