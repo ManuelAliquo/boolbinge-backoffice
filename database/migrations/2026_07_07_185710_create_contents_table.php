@@ -12,7 +12,7 @@ return new class extends Migration
         Schema::create('contents', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->text('short_description')->nullable();
             $table->text('long_description')->nullable();
             $table->string('trailer')->nullable();

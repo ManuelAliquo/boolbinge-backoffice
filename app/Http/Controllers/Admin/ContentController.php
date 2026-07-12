@@ -58,7 +58,7 @@ class ContentController extends Controller
 
         if (isset($data['genres'])) $newContent->genres()->attach($data['genres']);
 
-        return redirect()->route('contents.index');
+        return redirect()->route('contents.show', $newContent);
     }
 
     // SHOW

@@ -42,7 +42,7 @@
                                     <a class="btn btn-warning me-1" href="{{route('contents.edit', $content)}}">
                                         <i class="bi bi-pencil-square"></i> Edit
                                     </a>
-                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#indexContentDeleteModal{{$content->id}}">
+                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#contentDeleteModal{{$content->id}}">
                                         <i class="bi bi-trash3"></i> Delete
                                     </button>
                                 </div>
@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 {{-- delete modal --}}
-                <x-content-delete-modal :content="$content" />
+                <x-content-delete-modal :content="$content"/>
             @endforeach
         </div>
         {{-- SHOWS --}}
@@ -102,7 +102,7 @@
                                     <a class="btn btn-warning me-1" href="{{route('contents.edit', $content)}}">
                                         <i class="bi bi-pencil-square"></i> Edit
                                     </a>
-                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#indexContentDeleteModal{{$content->id}}">
+                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#contentDeleteModal{{$content->id}}">
                                         <i class="bi bi-trash3"></i> Delete
                                     </button>
                                 </div>
@@ -118,7 +118,7 @@
                     </div>
                 </div>
                 {{-- delete modal --}}
-                <x-content-delete-modal :content="$content" />
+                <x-content-delete-modal :content="$content"/>
             @endforeach
         </div>
         {{-- ANIME --}}
@@ -156,7 +156,7 @@
                                     <a class="btn btn-warning me-1" href="{{route('contents.edit', $content)}}">
                                         <i class="bi bi-pencil-square"></i> Edit
                                     </a>
-                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#indexContentDeleteModal{{$content->id}}">
+                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#contentDeleteModal{{$content->id}}">
                                         <i class="bi bi-trash3"></i> Delete
                                     </button>
                                 </div>
@@ -172,7 +172,7 @@
                     </div>
                 </div>
                 {{-- delete modal --}}
-                <x-content-delete-modal :content="$content" />
+                <x-content-delete-modal :content="$content"/>
             @endforeach
         </div>
     </div>

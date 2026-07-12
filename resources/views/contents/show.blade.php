@@ -29,7 +29,7 @@
                 <div class="fs-5 text-secondary">
                     @if ($content->production)
                         <span class="fw-semibold text-dark">{{$content->production}}</span>
-                        <span> - </span>
+                        <span> • </span>
                     @endif
                     <span>
                         {{$content->release_year}}
@@ -86,7 +86,7 @@
                     <i class="bi bi-pencil-square"></i> Edit
                 </a>
                 <button class="btn btn-danger" data-bs-toggle="modal"
-                data-bs-target="#indexContentDeleteModal{{$content->id}}">
+                data-bs-target="#contentDeleteModal{{$content->id}}">
                     <i class="bi bi-trash3"></i> Delete
                 </button>
             </div>
@@ -95,5 +95,5 @@
     </div>
 </div>
 
-<x-content-delete-modal :content="$content" />
+<x-content-delete-modal :content="$content"/>
 @endsection

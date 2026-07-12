@@ -24,35 +24,14 @@
                 <a class="btn btn-warning" href="{{route('genres.edit', $genre)}}">
                     <i class="bi bi-pencil-square"></i> Edit</a>
                 <button class="btn btn-danger" data-bs-toggle="modal"
-                data-bs-target="#indexGenreDeleteModal{{$genre->id}}">
+                data-bs-target="#genreDeleteModal{{$genre->id}}">
                     <i class="bi bi-trash3"></i> Delete
                 </button>
             </div>
         </div>
     </div>
-
-    {{-- index genre delete modal --}}
-    <div class="modal fade" id="indexGenreDeleteModal{{$genre->id}}" tabindex="-1"
-        aria-labelledby="indexGenreDeleteModal{{$genre->id}}" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title fw-bold" id="indexGenreDeleteModal">Delete "{{$genre->name}}"</h3>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body fs-5">Sure you want to delete "{{$genre->name}}"?</div>
-          <div class="modal-footer">
-            <button class="btn btn-primary fs-5" data-bs-dismiss="modal">Dismiss</button>
-            <form action="{{route('genres.destroy', $genre)}}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-outline-danger fs-5" data-bs-toggle="modal"
-                data-bs-target="#indexGenreDeleteModal">Delete</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div> 
+    {{-- delete modal --}}
+    <x-genre-delete-modal :genre="$genre"/>
     @endforeach
 </div>
 @endsection

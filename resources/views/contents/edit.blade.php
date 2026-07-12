@@ -27,7 +27,7 @@
                 <div class="col-12 col-sm-6">
                     <label class="form-label ms-1 fs-5" for="content-production">Production</label>
                     <input class="form-control" type="text" name="production" id="content-production"
-                           placeholder="Director / Network / Studio" value="{{$content->production}}">
+                           placeholder="Select type first..." value="{{$content->production}}">
                 </div>
             </div>
             {{-- title - length --}}
@@ -35,7 +35,7 @@
                 <div class="col-12 col-sm-8">
                     <label class="form-label ms-1 fs-5" for="content-title">Title</label>
                     <input class="form-control" id="content-title" name="title"
-                           type="text" placeholder="Insert Content Title" required value="{{$content->title}}">
+                           type="text" placeholder="Insert Title" required value="{{$content->title}}">
                 </div>
                 <div class="col-12 col-sm-4">
                     <label class="form-label ms-1 fs-5" for="content-length">Length</label>

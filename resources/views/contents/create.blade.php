@@ -24,7 +24,7 @@
                 <div class="col-12 col-sm-6">
                     <label class="form-label ms-1 fs-5" for="content-production">Production</label>
                     <input class="form-control" type="text" name="production" id="content-production"
-                           placeholder="Director / Network / Studio">
+                           placeholder="Select type first...">
                 </div>
             </div>
             {{-- title - length --}}
@@ -32,7 +32,7 @@
                 <div class="col-12 col-sm-8">
                     <label class="form-label ms-1 fs-5" for="content-title">Title</label>
                     <input class="form-control" id="content-title" name="title"
-                           type="text" placeholder="Insert Content Title" required>
+                           type="text" placeholder="Insert Title" required>
                 </div>
                 <div class="col-12 col-sm-4">
                     <label class="form-label ms-1 fs-5" for="content-length">Length</label>
