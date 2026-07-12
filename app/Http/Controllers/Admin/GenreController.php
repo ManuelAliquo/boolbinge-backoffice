@@ -26,18 +26,23 @@ class GenreController extends Controller
     // STORE
     public function store(Request $request)
     {
+        // validation
+        $request->validate([
+            'name' => 'required|unique:genres|max:255',
+            'description' => 'nullable|string'
+        ]);
+
+        // creation
         $data = $request->all();
         $newGenre = new Genre();
 
-        $slug = Str::slug($data['name']);
-
         $newGenre->name = $data['name'];
-        $newGenre->slug = $slug;
+        $newGenre->slug = Str::slug($data['name']);
         $newGenre->description = $data['description'];
 
         $newGenre->save();
 
-        return redirect('genres');
+        return redirect()->route('genres.show', $newGenre);
     }
 
     // SHOW
@@ -64,7 +69,7 @@ class GenreController extends Controller
 
         $genre->save();
 
-        return redirect()->route('genres.index');
+        return redirect()->route('genres.show', $genre);
     }
 
     // DELETE

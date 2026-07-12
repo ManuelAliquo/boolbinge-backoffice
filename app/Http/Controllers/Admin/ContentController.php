@@ -35,10 +35,8 @@ class ContentController extends Controller
         $data = $request->all();
         $newContent = new Content();
 
-        $slug = Str::slug($data['title']);
-
         $newContent->title = $data['title'];
-        $newContent->slug = $slug;
+        $newContent->slug = Str::slug($data['title']);
         $newContent->short_description = $data['short_description'];
         $newContent->long_description = $data['long_description'];
         $newContent->trailer = $data['trailer'];
@@ -80,10 +78,8 @@ class ContentController extends Controller
     {
         $data = $request->all();
 
-        $slug = Str::slug($data['title']);
-
         $content->title = $data['title'];
-        $content->slug = $slug;
+        $content->slug = Str::slug($data['title']);
         $content->short_description = $data['short_description'];
         $content->long_description = $data['long_description'];
         $content->trailer = $data['trailer'];

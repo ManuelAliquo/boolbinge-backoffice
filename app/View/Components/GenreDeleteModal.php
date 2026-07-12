@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class genres-delete-modal extends Component
+class GenreDeleteModal extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class genres-delete-modal extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.genres-delete-modal');
+        return view('components.genre-delete-modal');
     }
 }

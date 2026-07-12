@@ -2,6 +2,21 @@
 
 @section('content')
     <div class="container my-4">
+        {{-- errors --}}
+        @if ($errors->any())
+            <div class="d-flex justify-content-center">
+                <div class="alert alert-danger">
+                    <ul class="list-unstyled mb-0">
+                        @foreach ($errors->all() as $error)
+                            <li class="d-flex gap-2">
+                                <i class="bi bi-exclamation-triangle"></i> {{$error}}
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        @endif
+        {{-- form --}}
         <div class="d-flex gap-3 align-items-center ms-1 mb-3">
             <h2 class="text-secondary mb-1">Edit Genre</h2>
             <a class="btn btn-outline-dark" href="{{route('genres.index')}}">
