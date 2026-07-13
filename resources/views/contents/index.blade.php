@@ -3,7 +3,7 @@
 @section('content')
 <div class="container my-4">
     <div class="d-flex justify-content-between align-items-center ms-1 mb-4 flex-wrap">
-        <h2 class="text-secondary mb-1">Contents</h2>
+        <h2 class="text-secondary mb-1">Content</h2>
         <div>
             <a class="btn btn-outline-dark" href="{{route('dashboard')}}">
                 <i class="bi bi-arrow-left-circle"></i> Back</a>

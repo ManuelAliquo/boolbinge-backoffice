@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Content;
 use App\Models\Performer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class PerformerController extends Controller
 {
@@ -26,7 +28,20 @@ class PerformerController extends Controller
     // STORE
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $newPerformer = new Performer();
+
+        $newPerformer->name = $data['name'];
+        $newPerformer->slug = Str::slug($data['name']);
+
+        if (array_key_exists('picture', $data)) {
+            $imgUrl = Storage::putFile('pictures', $data['picture']);
+            $newPerformer->picture = $imgUrl;
+        }
+
+        $newPerformer->save();
+
+        return redirect()->route('performers.show', $newPerformer);
     }
 
     // SHOW
@@ -45,12 +60,35 @@ class PerformerController extends Controller
     // UPDATE
     public function update(Request $request, Performer $performer)
     {
-        //
+        $data = $request->all();
+
+        $performer->name = $data['name'];
+        $performer->slug = Str::slug($data['name']);
+
+        if (array_key_exists('picture', $data)) {
+            if ($performer->picture && !str_starts_with($performer->picture, 'imgs/')) {
+                Storage::delete($performer->picture);
+            }
+
+            $imgUrl = Storage::putFile('performers-pictures', $data['picture']);
+            $performer->picture = $imgUrl;
+        }
+
+        $performer->save();
+
+        if (isset($data['contents'])) $performer->contents()->sync($data['contents']);
+        else $performer->contents()->sync([]);
+
+        return redirect()->route('performers.show', $performer);
     }
 
     // DELETE
     public function destroy(Performer $performer)
     {
+        if ($performer->picture && !str_starts_with($performer->picture, 'imgs/')) {
+            Storage::delete($performer->picture);
+        }
+
         $performer->delete();
         return redirect()->route('performers.index');
     }

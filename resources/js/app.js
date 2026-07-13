@@ -4,7 +4,7 @@ import "~icons/bootstrap-icons.scss";
 import * as bootstrap from "bootstrap";
 import.meta.glob(["../img/**"]);
 
-// FORM CONTROL
+// FORM CONTROLS
 document.addEventListener("DOMContentLoaded", () => {
     // CONTENT TYPE EVENT-LISTENER
     const contentTypeSelect = document.getElementById("content-type");
@@ -41,15 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
         contentTypeSelect.addEventListener("change", handleTypeChange);
     }
 
-    // ANTI SPAM-SUBMIT
-    const forms = document.querySelectorAll("form");
-    forms.forEach((form) => {
-        form.addEventListener("submit", (e) => {
-            const submitBtn = form.querySelector("button[type='submit']");
-            if (submitBtn) submitBtn.disabled = true;
-        });
-    });
-
     // PERFORMERS FILTER
     const performersFilter = document.getElementById("performers-filter");
     const performersList = document.getElementById("performers-list");
@@ -68,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
             performerItems.forEach((item) => {
                 const name = item
                     .querySelector("label")
-                    .innerText.toLowerCase();
+                    .textContent.toLowerCase();
 
                 if (search === "") {
                     item.style.display = "";
@@ -85,4 +76,46 @@ document.addEventListener("DOMContentLoaded", () => {
             else noResultsMessage.classList.add("d-none");
         });
     }
+
+    // CONTENT FILTER
+    const contentsFilter = document.getElementById("contents-filter");
+    const contentsList = document.getElementById("contents-list");
+
+    if (contentsFilter && contentsList) {
+        const contentItems = contentsList.querySelectorAll(".content-item");
+        const noResultsMessage = document.getElementById("no-contents-message");
+
+        contentsFilter.addEventListener("input", () => {
+            const search = contentsFilter.value.toLowerCase().trim();
+            let hasResults = false;
+
+            contentItems.forEach((item) => {
+                const labelText = item
+                    .querySelector("label")
+                    .textContent.toLowerCase();
+
+                if (search === "") {
+                    item.style.display = "";
+                    hasResults = true;
+                } else {
+                    const matches = labelText.includes(search);
+                    item.style.display = matches ? "" : "none";
+                    if (matches) hasResults = true;
+                }
+            });
+
+            if (!hasResults && search !== "")
+                noResultsMessage.classList.remove("d-none");
+            else noResultsMessage.classList.add("d-none");
+        });
+    }
+
+    // ANTI SPAM-SUBMIT
+    const forms = document.querySelectorAll("form");
+    forms.forEach((form) => {
+        form.addEventListener("submit", (e) => {
+            const submitBtn = form.querySelector("button[type='submit']");
+            if (submitBtn) submitBtn.disabled = true;
+        });
+    });
 });

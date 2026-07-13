@@ -20,26 +20,23 @@
                         <div class="d-flex align-items-center gap-2 mb-3">
                             <div class="performer-avatar bg-light border rounded-circle text-secondary d-flex align-items-center justify-content-center shadow-sm overflow-hidden flex-shrink-0">
                                 @if($performer->picture)
-                                    <img src="{{$performer->picture}}" alt="{{$performer->name}}" class="img-fluid">
+                                    <img src="{{$performer->picture && str_starts_with($performer->picture, 'imgs/') ? asset($performer->picture) : ($performer->picture ? asset('storage/' . $performer->picture) : asset('imgs/placeholder.png'))}}" alt="{{$performer->name}}" class="img-fluid">
                                 @else
                                     <i class="bi bi-person-fill fs-5 p-2"></i>
                                 @endif
                             </div>
-                            <h5 class="card-title mb-0 fw-semibold"
-                            title="{{$performer->name}}">
-                                {{$performer->name}}
-                            </h5>
+                            <h5 class="card-title mb-0 fw-semibold">{{$performer->name}}</h5>
                         </div>
                         {{-- buttons --}}
                         <div class="d-flex justify-content-end gap-2 border-top pt-2">
-                            <a class="btn btn-sm btn-outline-info" href="{{ route('performers.show', $performer) }}" title="View Profile">
+                            <a class="btn btn-sm btn-outline-info" href="{{ route('performers.show', $performer) }}">
                                 <i class="bi bi-info-circle"></i>
                             </a>
-                            <a class="btn btn-sm btn-outline-warning" href="{{ route('performers.edit', $performer) }}" title="Edit">
+                            <a class="btn btn-sm btn-outline-warning" href="{{ route('performers.edit', $performer) }}">
                                 <i class="bi bi-pencil-square"></i>
                             </a>
                             <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" 
-                                    data-bs-target="#performerDeleteModal{{ $performer->id }}" title="Delete">
+                                    data-bs-target="#performerDeleteModal{{ $performer->id }}">
                                 <i class="bi bi-trash3"></i>
                             </button>
                         </div>

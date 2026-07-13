@@ -14,6 +14,7 @@ a {
     display: flex;
     justify-content: center;
     box-shadow: 0 2px 3px 2px rgba($color: #000000, $alpha: 0.5);
+    aspect-ratio: 2/3;
 }
 
 .content-thumbnail {
@@ -22,7 +23,7 @@ a {
     object-fit: cover;
 }
 
-.performers-results {
+.form-search-results {
     max-height: 180px;
 }
 
