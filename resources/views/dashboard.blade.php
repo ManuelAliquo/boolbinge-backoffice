@@ -15,7 +15,7 @@
                 <div class="col-12 col-sm-6">
                     <div class="d-flex flex-column">
                         <a class="btn btn-primary fs-5 fs-md-4 fw-semibold"
-                        href="{{route('contents.index')}}">Content List</a>
+                        href="{{route('contents.index')}}"><i class="bi bi-list me-1"></i> Content List</a>
                         <div class="d-flex justify-content-center">
                             <small class="text-center text-muted card px-3 border-top-0 rounded-top-0">
                                 view all contents</small>
@@ -25,7 +25,7 @@
                 <div class="col-12 col-sm-6">
                     <div class="d-flex flex-column">
                         <a class="btn btn-success fs-5 fs-md-4 fw-semibold"
-                        href="{{route('contents.create')}}">New Content</a>
+                        href="{{route('contents.create')}}"><i class="bi bi-plus-circle me-1"></i> New Content</a>
                         <div class="d-flex justify-content-center">
                             <small class="text-center text-muted card px-3 border-top-0 rounded-top-0">
                                 add new content</small>
@@ -41,7 +41,7 @@
                 <div class="col-12 col-sm-6">
                     <div class="d-flex flex-column">
                         <a class="btn btn-primary fs-5 fs-md-4 fw-semibold"
-                        href="{{route('genres.index')}}">Genres List</a>
+                        href="{{route('genres.index')}}"><i class="bi bi-list me-1"></i> Genres List</a>
                         <div class="d-flex justify-content-center">
                             <small class="text-center text-muted card px-3 border-top-0 rounded-top-0">
                                 view all genres</small>
@@ -51,7 +51,7 @@
                 <div class="col-12 col-sm-6">
                     <div class="d-flex flex-column">
                         <a class="btn btn-success fs-5 fs-md-4 fw-semibold"
-                        href="{{route('genres.create')}}">New Genre</a>
+                        href="{{route('genres.create')}}"><i class="bi bi-plus-circle me-1"></i> New Genre</a>
                         <div class="d-flex justify-content-center">
                             <small class="text-center text-muted card px-3 border-top-0 rounded-top-0">
                                 add new genre</small>
@@ -67,7 +67,7 @@
                 <div class="col-12 col-sm-6">
                     <div class="d-flex flex-column">
                         <a class="btn btn-primary fs-5 fs-md-4 fw-semibold"
-                        href="{{route('performers.index')}}">Performers List</a>
+                        href="{{route('performers.index')}}"><i class="bi bi-list me-1"></i> Performers List</a>
                         <div class="d-flex justify-content-center">
                             <small class="text-center text-muted card px-3 border-top-0 rounded-top-0">
                                 view all performers</small>
@@ -77,7 +77,7 @@
                 <div class="col-12 col-sm-6">
                     <div class="d-flex flex-column">
                         <a class="btn btn-success fs-5 fs-md-4 fw-semibold"
-                        href="{{route('performers.create')}}">New Performer</a>
+                        href="{{route('performers.create')}}"><i class="bi bi-plus-circle me-1"></i> New Performer</a>
                         <div class="d-flex justify-content-center">
                             <small class="text-center text-muted card px-3 border-top-0 rounded-top-0">
                                 add new performer</small>

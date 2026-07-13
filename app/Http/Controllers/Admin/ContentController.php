@@ -13,13 +13,24 @@ use Illuminate\Support\Facades\Storage;
 class ContentController extends Controller
 {
     // INDEX
-    public function index()
+    public function index(Request $request)
     {
-        $movies = Content::where('type', 'movie')->get();
-        $shows  = Content::where('type', 'show')->get();
-        $anime  = Content::where('type', 'anime')->get();
+        $search = $request->input('search');
 
-        return view('contents.index', compact('movies', 'shows', 'anime'));
+        if ($search) {
+            $movies = Content::where('type', 'movie')
+                ->where('title', 'LIKE', "%{$search}%")->get();
+            $shows  = Content::where('type', 'show')
+                ->where('title', 'LIKE', "%{$search}%")->get();
+            $anime  = Content::where('type', 'anime')
+                ->where('title', 'LIKE', "%{$search}%")->get();
+        } else {
+            $movies = Content::where('type', 'movie')->get();
+            $shows  = Content::where('type', 'show')->get();
+            $anime  = Content::where('type', 'anime')->get();
+        }
+
+        return view('contents.index', compact('movies', 'shows', 'anime', 'search'));
     }
 
     // CREATE

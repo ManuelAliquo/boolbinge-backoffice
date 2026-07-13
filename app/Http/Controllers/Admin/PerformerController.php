@@ -12,10 +12,15 @@ use Illuminate\Support\Facades\Storage;
 class PerformerController extends Controller
 {
     // INDEX
-    public function index()
+    public function index(Request $request)
     {
-        $performers = Performer::all();
-        return view('performers.index', compact('performers'));
+        $search = $request->input('search');
+
+        if ($search) $performers = Performer::where('name', 'LIKE', "%{$search}%")->get();
+        else $performers = Performer::all();
+
+
+        return view('performers.index', compact('performers', 'search'));
     }
 
     // CREATE

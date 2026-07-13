@@ -2,6 +2,18 @@
 
 @section('content')
 <div class="container my-4">
+    {{-- search --}}
+    <form action="{{route('contents.index')}}" method="GET" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="search" class="form-control" placeholder="Search a title..." 
+                value="{{request('search')}}">
+            <button type="submit" class="btn btn-primary">Search</button>
+            @if ($search)
+            <a href="{{route('contents.index')}}" class="btn btn-outline-danger"><i class="bi bi-x-circle"></i></a>
+            @endif
+        </div>
+    </form>
+    {{-- header --}}
     <div class="d-flex justify-content-between align-items-center ms-1 mb-4 flex-wrap">
         <h2 class="text-secondary mb-1">Content</h2>
         <div>
@@ -12,6 +24,7 @@
         </div>
     </div>
     {{-- MOVIES --}}
+    @if (!$movies->isEmpty())
     <div class="border-bottom pb-3 mt-4">
         @foreach ($movies as $content)
             <div class="card mb-3 d-flex flex-column flex-sm-row overflow-hidden">
@@ -64,7 +77,9 @@
             <x-content-delete-modal :content="$content"/>
         @endforeach
     </div>
+    @endif
     {{-- SHOWS --}}
+    @if (!$shows->isEmpty())
     <div class="border-bottom pb-3 mt-3">
         <h3 class="text-secondary ms-1">Shows</h3>
         @foreach ($shows as $content)
@@ -125,7 +140,9 @@
             <x-content-delete-modal :content="$content"/>
         @endforeach
     </div>
+    @endif
     {{-- ANIME --}}
+    @if (!$anime->isEmpty())
     <div class="mt-3">
         <h3 class="text-secondary ms-1">Anime</h3>
         @foreach ($anime as $content)
@@ -186,5 +203,6 @@
             <x-content-delete-modal :content="$content"/>
         @endforeach
     </div>
+    @endif
 </div>
 @endsection
