@@ -79,22 +79,7 @@
         <div class="mb-3">
             <label class="form-label ms-1 fs-5" for="content-longDescription">Plot (Long Description)</label>
             <textarea class="form-control" id="content-longDescription" name="long_description" rows="5"
-                placeholder="Insert the full plot">{{ $content->long_description }}</textarea>
-        </div>
-        {{-- img --}}
-        <div class="mb-4">
-            <div class="card p-2">
-                <div class="d-flex gap-4 align-items-center">
-                    <div class="flex-grow-1 ms-2">
-                        <label class="form-label ms-1 fs-5" for="content-image">Poster</label>
-                        <input class="form-control" type="file" id="content-image" name="poster">
-                    </div>
-                    @if($content->poster)
-                        <img alt="preview" class="content-thumbnail img-thumbnail" 
-                            src="{{str_starts_with($content->poster, 'imgs/') ? asset($content->poster) : asset('storage/' . $content->poster)}}">                            
-                    @endif
-                </div>
-            </div>
+                placeholder="Insert the full plot">{{$content->long_description}}</textarea>
         </div>
         {{-- genres --}}
         <div class="mb-4">
@@ -119,15 +104,61 @@
                 @foreach ($performers as $performer)
                     <div class="performer-item form-check mb-2">
                         <input class="form-check-input" type="checkbox" name="performers[]" 
-                            id="performer-{{ $performer->id }}" value="{{ $performer->id }}"
-                            {{ isset($content) && $content->performers->contains($performer->id) ? 'checked' : '' }}>
-                        <label class="form-check-label d-block w-100" for="performer-{{ $performer->id }}">
-                            {{ $performer->name }}
+                            id="performer-{{$performer->id}}" value="{{$performer->id}}"
+                            {{isset($content) && $content->performers->contains($performer->id) ? 'checked' : ''}}>
+                        <label class="form-check-label d-block w-100" for="performer-{{$performer->id}}">
+                            {{$performer->name}}
                         </label>
                     </div>
                 @endforeach
                 <div id="no-performers-message" class="text-muted alert alert-warning d-none">
                     <i class="bi bi-exclamation-circle me-1"></i> Performer not found.
+                </div>
+            </div>
+        </div>
+        {{-- IMAGES --}}
+        {{-- poster --}}
+        <div class="mb-4">
+            <div class="card p-2">
+                <div class="d-flex gap-3 align-items-center">
+                    <div class="flex-grow-1 ms-2">
+                        <label class="form-label ms-1 fs-5" for="poster">Poster</label>
+                        <input class="form-control" type="file" id="poster" name="poster">
+                    </div>
+                    @if($content->poster)
+                        <img alt="poster-preview" class="content-thumbnail object-fit-cover img-thumbnail bg-secondary-subtle" 
+                        src="{{str_starts_with($content->poster, 'imgs/') ? asset($content->poster) : asset('storage/' . $content->poster)}}">                            
+                    @endif
+                </div>
+            </div>
+        </div>
+        {{-- logo --}}
+        <div class="mb-4">
+            <div class="card p-2">
+                <div class="d-flex flex-column gap-3 align-intems-center">
+                    <div class="flex-grow-1 ms-2">
+                        <label class="form-label ms-1 fs-5" for="logo">Logo</label>
+                        <input class="form-control" type="file" id="logo" name="logo">
+                    </div>
+                    @if($content->logo)
+                        <img alt="logo-preview" class="content-thumbnail object-fit-contain img-thumbnail bg-secondary-subtle" 
+                        src="{{str_starts_with($content->logo, 'imgs/') ? asset($content->logo) : asset('storage/' . $content->logo)}}">                            
+                    @endif
+                </div>
+            </div>
+        </div>
+        {{-- background --}}
+        <div class="mb-4">
+            <div class="card p-2">
+                <div class="d-flex flex-column flex-md-row gap-3 align-intems-center">
+                    <div class="flex-grow-1 ms-2">
+                        <label class="form-label ms-1 fs-5" for="background">Background</label>
+                        <input class="form-control" type="file" id="background" name="background">
+                    </div>
+                    @if($content->background)
+                        <img alt="background-preview" class="content-thumbnail object-fit-contain img-thumbnail bg-secondary-subtle" 
+                        src="{{str_starts_with($content->background, 'imgs/') ? asset($content->background) : asset('storage/' . $content->background)}}">                            
+                    @endif
                 </div>
             </div>
         </div>

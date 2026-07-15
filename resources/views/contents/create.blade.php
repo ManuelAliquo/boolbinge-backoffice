@@ -78,21 +78,16 @@
             <textarea class="form-control" id="content-longDescription" name="long_description" rows="5"
                         placeholder="Insert the full plot"></textarea>
         </div>
-        {{-- img --}}
-        <div class="mb-4">
-            <label class="form-label ms-1 fs-5" for="content-image">Poster</label>
-            <input class="form-control" type="file" id="content-image" name="poster">
-        </div>
         {{-- genres --}}
-        <div class="mb-4">
+        <div class="mb-3">
             <label class="form-label ms-1 fs-5">Genres</label>
             <div class="d-flex gap-3 flex-wrap mb-3 px-1">
                 @foreach ($genres as $genre)
-                    <div class="form-check">
-                        <input class="form-check-input" id="genre-{{$genre->id}}" name="genres[]"
-                                value="{{$genre->id}}" type="checkbox">
-                        <label class="form-check-label" for="genre-{{$genre->id}}">{{ $genre->name }}</label>
-                    </div>
+                <div class="form-check">
+                    <input class="form-check-input" id="genre-{{$genre->id}}" name="genres[]"
+                    value="{{$genre->id}}" type="checkbox">
+                    <label class="form-check-label" for="genre-{{$genre->id}}">{{$genre->name}}</label>
+                </div>
                 @endforeach
             </div>
         </div>
@@ -106,9 +101,9 @@
                 @foreach ($performers as $performer)
                     <div class="performer-item form-check mb-2">
                         <input class="form-check-input" type="checkbox" name="performers[]" 
-                            id="performer-{{ $performer->id }}" value="{{ $performer->id }}">
-                        <label class="form-check-label d-block w-100" for="performer-{{ $performer->id }}">
-                            {{ $performer->name }}
+                            id="performer-{{$performer->id}}" value="{{$performer->id}}">
+                        <label class="form-check-label d-block w-100" for="performer-{{$performer->id}}">
+                            {{$performer->name}}
                         </label>
                     </div>
                 @endforeach
@@ -116,6 +111,22 @@
                     <i class="bi bi-exclamation-circle me-1"></i> Performer not found.
                 </div>
             </div>
+        </div>
+        {{-- IMAGES --}}
+        {{-- poster --}}
+        <div class="mb-4">
+            <label class="form-label ms-1 fs-5" for="poster">Poster</label>
+            <input class="form-control" type="file" id="poster" name="poster">
+        </div>
+        {{-- logo --}}
+        <div class="mb-4">
+            <label class="form-label ms-1 fs-5" for="logo">Logo</label>
+            <input class="form-control" type="file" id="logo" name="logo">
+        </div>
+        {{-- background --}}
+        <div class="mb-4">
+            <label class="form-label ms-1 fs-5" for="background">Background</label>
+            <input class="form-control" type="file" id="background" name="background">
         </div>
         {{-- submit --}}
         <div class="d-flex justify-content-center">

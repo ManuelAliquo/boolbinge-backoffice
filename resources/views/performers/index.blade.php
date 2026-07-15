@@ -41,14 +41,14 @@
                     </div>
                     {{-- buttons --}}
                     <div class="d-flex justify-content-end gap-2 border-top pt-2">
-                        <a class="btn btn-sm btn-outline-info" href="{{ route('performers.show', $performer) }}">
+                        <a class="btn btn-sm btn-outline-info" href="{{route('performers.show', $performer)}}">
                             <i class="bi bi-info-circle"></i>
                         </a>
-                        <a class="btn btn-sm btn-outline-warning" href="{{ route('performers.edit', $performer) }}">
+                        <a class="btn btn-sm btn-outline-warning" href="{{route('performers.edit', $performer)}}">
                             <i class="bi bi-pencil-square"></i>
                         </a>
                         <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" 
-                                data-bs-target="#performerDeleteModal{{ $performer->id }}">
+                                data-bs-target="#performerDeleteModal{{$performer->id}}">
                             <i class="bi bi-trash3"></i>
                         </button>
                     </div>

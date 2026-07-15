@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('trailer')->nullable();
             $table->enum('type', ['movie', 'show', 'anime']);
             $table->string('poster')->nullable();
+            $table->string('logo')->nullable();
+            $table->string('background')->nullable();
             $table->year('release_year');
             $table->year('end_year')->nullable();
             $table->decimal('rating', 3, 1)->nullable();

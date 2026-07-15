@@ -3,7 +3,7 @@
 @section('content')
 <div class="container my-4">
     <div class="mb-4 border-bottom pb-3">
-        <h1 class="fw-bold">Genre: {{ $genre->name }}</h1>
+        <h1 class="fw-bold">Genre: {{$genre->name}}</h1>
         <p class="text-muted fs-5">{{$genre->description}}</p>
         <div class="d-flex gap-2">
             <a class="btn btn-outline-dark" href="{{route('dashboard')}}">

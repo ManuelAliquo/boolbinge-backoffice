@@ -19,7 +19,7 @@
             {{-- title - production - year - status --}}
             <div class="mb-3">
                 <div class="d-flex align-items-center flex-wrap gap-2 mb-1">
-                    <h1 class="fw-bold mb-0">{{ $content->title }}</h1>
+                    <h1 class="fw-bold mb-0">{{$content->title}}</h1>
                     @if($content->type !== 'movie')
                         <span class="badge {{$content->end_year ? 'text-bg-secondary' : 'text-bg-success'}} shadow-sm">
                             {{$content->end_year ? 'Ended' : 'Ongoing'}}
