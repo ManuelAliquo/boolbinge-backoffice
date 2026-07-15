@@ -80,8 +80,8 @@
         </div>
         {{-- img --}}
         <div class="mb-4">
-            <label class="form-label ms-1 fs-5" for="content-image">Cover Image</label>
-            <input class="form-control" type="file" id="content-image" name="cover_image">
+            <label class="form-label ms-1 fs-5" for="content-image">Poster</label>
+            <input class="form-control" type="file" id="content-image" name="poster">
         </div>
         {{-- genres --}}
         <div class="mb-4">
@@ -119,7 +119,8 @@
         </div>
         {{-- submit --}}
         <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-success px-5 fw-semibold fs-5 shadow-sm">Add Content</button>
+            <button type="submit" class="btn btn-success px-5 fw-semibold fs-5 shadow-sm">
+                <i class="bi bi-plus-circle me-1"></i> Add Content</button>
         </div>
     </form>
 </div>

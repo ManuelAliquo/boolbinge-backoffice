@@ -33,8 +33,10 @@
             <label class="form-label ms-1 fs-5" for="genre-description">Description</label>
             <textarea class="form-control" name="description" id="genre-description" placeholder="Insert Genre Description"></textarea>
         </div>
+        {{-- submit --}}
         <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-success px-5 fw-semibold fs-5">Add Genre</button>
+            <button type="submit" class="btn btn-success px-5 fw-semibold fs-5">
+                <i class="bi bi-plus-circle me-1"></i> Add Genre</button>
         </div>
     </form>
 </div>

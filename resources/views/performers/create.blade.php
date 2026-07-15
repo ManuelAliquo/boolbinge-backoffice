@@ -25,7 +25,8 @@
         </div>
         {{-- submit --}}
         <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-success px-5 fw-semibold fs-5 shadow-sm">Add Performer</button>
+            <button type="submit" class="btn btn-success px-5 fw-semibold fs-5 shadow-sm">
+                <i class="bi bi-plus-circle me-1"></i> Add Performer</button>
         </div>
     </form>
 </div>

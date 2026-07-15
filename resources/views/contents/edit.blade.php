@@ -86,12 +86,12 @@
             <div class="card p-2">
                 <div class="d-flex gap-4 align-items-center">
                     <div class="flex-grow-1 ms-2">
-                        <label class="form-label ms-1 fs-5" for="content-image">Cover Image</label>
-                        <input class="form-control" type="file" id="content-image" name="cover_image">
+                        <label class="form-label ms-1 fs-5" for="content-image">Poster</label>
+                        <input class="form-control" type="file" id="content-image" name="poster">
                     </div>
-                    @if($content->cover_image)
+                    @if($content->poster)
                         <img alt="preview" class="content-thumbnail img-thumbnail" 
-                                src="{{str_starts_with($content->cover_image, 'imgs/') ? asset($content->cover_image) : asset('storage/' . $content->cover_image)}}">                            
+                            src="{{str_starts_with($content->poster, 'imgs/') ? asset($content->poster) : asset('storage/' . $content->poster)}}">                            
                     @endif
                 </div>
             </div>
@@ -133,7 +133,8 @@
         </div>
         {{-- submit --}}
         <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-success px-5 fw-semibold fs-5 shadow-sm">Save Content</button>
+            <button type="submit" class="btn btn-success px-5 fw-semibold fs-5 shadow-sm">
+                <i class="bi bi-save me-1"></i> Save changes</button>
         </div>
     </form>
 </div>

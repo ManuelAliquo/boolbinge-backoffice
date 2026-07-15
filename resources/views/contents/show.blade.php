@@ -5,12 +5,12 @@
     <div class="row border rounded-3 p-3 bg-white shadow-sm">
         {{-- IMAGE --}}
         <div class="col-12 col-sm-8 mx-sm-auto col-md-5 col-lg-4 d-flex align-items-center justify-content-center mb-3 mb-md-0">
-            <div class="cover-image rounded-3 border overflow-hidden w-100">
-                @if($content->cover_image)
+            <div class="poster rounded-3 border overflow-hidden w-100">
+                @if($content->poster)
                     <img class="img-fluid w-100 h-100 object-fit-cover" alt="{{$content->title}}"
-                        src="{{str_starts_with($content->cover_image, 'imgs/') ? asset($content->cover_image) : asset('storage/' . $content->cover_image)}}">
+                        src="{{str_starts_with($content->poster, 'imgs/') ? asset($content->poster) : asset('storage/' . $content->poster)}}">
                 @else
-                    <img class="img-fluid w-100 h-100 object-fit-cover" src="{{asset('imgs/placeholder.png')}}" alt="placeholder">
+                    <img class="img-fluid w-100 h-100 object-fit-cover" src="{{asset('imgs/content-posters/poster-placeholder.png')}}" alt="placeholder">
                 @endif
             </div>
         </div>

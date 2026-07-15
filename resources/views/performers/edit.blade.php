@@ -16,7 +16,7 @@
             <div class="col-12">
                 <label class="form-label ms-1 fs-5" for="performer-name">Name</label>
                 <input id="performer-name" type="text" class="form-control" name="name"
-                    value="{{ old('name', $performer->name) }}" placeholder="Insert performer's Name" required>
+                    value="{{$performer->name}}" placeholder="Insert performer's Name" required>
             </div>
         </div>
         {{-- picture --}}
@@ -28,8 +28,8 @@
                         <input class="form-control" type="file" id="performer-picture" name="picture">
                     </div>
                     @if($performer->picture)
-                        <img alt="preview" class="content-thumbnail img-thumbnail" 
-                            src="{{str_starts_with($performer->picture, 'imgs/') ? asset($performer->picture) : asset('storage/' . $performer->picture)}}">
+                    <img alt="preview" class="content-thumbnail img-thumbnail" 
+                        src="{{str_starts_with($performer->picture, 'imgs/') ? asset($performer->picture) : asset('storage/' . $performer->picture)}}">
                     @endif
                 </div>
             </div>
@@ -43,11 +43,11 @@
                 @foreach ($contents as $content)
                     <div class="content-item form-check mb-2">
                         <input class="form-check-input" type="checkbox" name="contents[]" 
-                            id="content-{{ $content->id }}" value="{{ $content->id }}"
-                            {{ $performer->contents->contains($content->id) ? 'checked' : '' }}>
-                        <label class="form-check-label d-block w-100 text-dark fw-semibold" for="content-{{ $content->id }}">
-                            {{ $content->title }} 
-                            <span class="text-muted fw-normal small ms-1">({{ ucfirst($content->type) }} - {{ $content->release_year }})</span>
+                            id="content-{{$content->id}}" value="{{$content->id}}"
+                            {{$performer->contents->contains($content->id) ? 'checked' : ''}}>
+                        <label class="form-check-label d-block w-100 text-dark fw-semibold" for="content-{{$content->id}}">
+                            {{$content->title}} 
+                            <span class="text-muted fw-normal small ms-1">({{ucfirst($content->type)}} - {{$content->release_year}})</span>
                         </label>
                     </div>
                 @endforeach
@@ -58,7 +58,8 @@
         </div>
         {{-- submit --}}
         <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-success px-5 fw-semibold fs-5 shadow-sm">Save Performer</button>
+            <button type="submit" class="btn btn-success px-5 fw-semibold fs-5 shadow-sm">
+                <i class="bi bi-save me-1"></i> Save changes</button>
         </div>
     </form>
 </div>

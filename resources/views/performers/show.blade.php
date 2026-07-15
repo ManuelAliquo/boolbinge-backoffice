@@ -5,7 +5,7 @@
     <div class="row border rounded-3 p-3 bg-white shadow-sm">
         {{-- picture --}}
         <div class="col-12 col-sm-8 mx-sm-auto col-md-5 col-lg-4 d-flex align-items-center justify-content-center mb-3 mb-md-0">
-            <div class="cover-image rounded-3 border overflow-hidden w-100">
+            <div class="poster rounded-3 border overflow-hidden w-100">
                 @if($performer->picture)
                     <img class="img-fluid w-100 h-100 object-fit-cover" alt="{{$performer->title}}"
                         src="{{str_starts_with($performer->picture, 'imgs/') ? asset($performer->picture) : asset('storage/' . $performer->picture)}}">

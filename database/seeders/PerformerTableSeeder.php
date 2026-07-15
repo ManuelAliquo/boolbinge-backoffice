@@ -14,75 +14,75 @@ class PerformerTableSeeder extends Seeder
         $performers = [
             [
                 'name' => 'Leonardo DiCaprio',
-                'picture' => 'imgs/og-performers-imgs/leonardo-dicaprio.webp'
+                'picture' => 'imgs/performers-pictures/Leonardo DiCaprio.webp'
             ],
             [
                 'name' => 'Tom Hardy',
-                'picture' => 'imgs/og-performers-imgs/tom-hardy.jpg'
+                'picture' => 'imgs/performers-pictures/Tom Hardy.webp'
             ],
             [
                 'name' => 'Elijah Wood',
-                'picture' => 'imgs/og-performers-imgs/elijah-wood.jpg'
+                'picture' => 'imgs/performers-pictures/Elijah Wood.webp'
             ],
             [
                 'name' => 'Viggo Mortensen',
-                'picture' => 'imgs/og-performers-imgs/viggo-mortensen.jpg'
+                'picture' => 'imgs/performers-pictures/Viggo Mortensen.webp'
             ],
             [
                 'name' => 'Ian McKellen',
-                'picture' => 'imgs/og-performers-imgs/ian-mckellen.jpg'
+                'picture' => 'imgs/performers-pictures/Ian McKellen.webp'
             ],
             [
                 'name' => 'Matthew McConaughey',
-                'picture' => 'imgs/og-performers-imgs/matthew-mcconaughey.webp'
+                'picture' => 'imgs/performers-pictures/Matthew McConaughey.webp'
             ],
             [
                 'name' => 'Anne Hathaway',
-                'picture' => 'imgs/og-performers-imgs/anne-athaway.webp'
+                'picture' => 'imgs/performers-pictures/Anne Hathaway.webp'
             ],
             [
                 'name' => 'Uma Thurman',
-                'picture' => 'imgs/og-performers-imgs/uma-thurman.jpg'
+                'picture' => 'imgs/performers-pictures/Uma Thurman.webp'
             ],
             [
                 'name' => 'Lucy Liu',
-                'picture' => 'imgs/og-performers-imgs/lucy-liu.webp'
+                'picture' => 'imgs/performers-pictures/Lucy Liu.webp'
             ],
             [
                 'name' => 'Kit Harington',
-                'picture' => 'imgs/og-performers-imgs/kit-harington.jpg'
+                'picture' => 'imgs/performers-pictures/Kit Harington.webp'
             ],
             [
                 'name' => 'Emilia Clarke',
-                'picture' => 'imgs/og-performers-imgs/emilia-clarke.jpg'
+                'picture' => 'imgs/performers-pictures/Emilia Clarke.webp'
             ],
             [
                 'name' => 'Peter Dinklage',
-                'picture' => 'imgs/og-performers-imgs/peter-dinklage.webp'
+                'picture' => 'imgs/performers-pictures/Peter Dinklage.webp'
             ],
             [
                 'name' => 'Bryan Cranston',
-                'picture' => 'imgs/og-performers-imgs/bryan-cranston.webp'
+                'picture' => 'imgs/performers-pictures/Bryan Cranston.webp'
             ],
             [
                 'name' => 'Aaron Paul',
-                'picture' => 'imgs/og-performers-imgs/aaron-paul.webp'
+                'picture' => 'imgs/performers-pictures/Aaron Paul.webp'
             ],
             [
                 'name' => 'Millie Bobby Brown',
-                'picture' => 'imgs/og-performers-imgs/millie-bobby-brown.webp'
+                'picture' => 'imgs/performers-pictures/Millie Bobby Brown.webp'
             ],
             [
                 'name' => 'David Harbour',
-                'picture' => 'imgs/og-performers-imgs/david-harbour.webp'
+                'picture' => 'imgs/performers-pictures/David Harbour.webp'
             ],
             [
                 'name' => 'Steven Yeun',
-                'picture' => 'imgs/og-performers-imgs/steven-yeun.jpg'
+                'picture' => 'imgs/performers-pictures/Steven Yeun.webp'
             ],
             [
                 'name' => 'J.K. Simmons',
-                'picture' => 'imgs/og-performers-imgs/jk-simmons.jpg'
+                'picture' => 'imgs/performers-pictures/JK Simmons.webp'
             ]
         ];
 

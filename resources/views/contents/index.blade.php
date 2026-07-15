@@ -70,7 +70,7 @@
                 </div>
                 <div class="col-12 col-sm-5 col-md-3 col-lg-2 d-flex align-items-center justify-content-center bg-light">
                     <img class="img-fluid w-100 h-100 object-fit-cover" alt="{{$content->title}}"
-                            src="{{$content->cover_image && str_starts_with($content->cover_image, 'imgs/') ? asset($content->cover_image) : ($content->cover_image ? asset('storage/' . $content->cover_image) : asset('imgs/placeholder.png'))}}">
+                        src="{{$content->poster && str_starts_with($content->poster, 'imgs/') ? asset($content->poster) : ($content->poster ? asset('storage/' . $content->poster) : asset('imgs/content-posters/poster-placeholder.png'))}}">
                 </div>
             </div>
             {{-- delete modal --}}
@@ -133,7 +133,7 @@
                 </div>
                 <div class="col-12 col-sm-5 col-md-3 col-lg-2 d-flex align-items-center justify-content-center bg-light">
                     <img class="img-fluid w-100 h-100 object-fit-cover" alt="{{$content->title}}"
-                            src="{{$content->cover_image && str_starts_with($content->cover_image, 'imgs/') ? asset($content->cover_image) : ($content->cover_image ? asset('storage/' . $content->cover_image) : asset('imgs/placeholder.png'))}}">
+                        src="{{$content->poster && str_starts_with($content->poster, 'imgs/') ? asset($content->poster) : ($content->poster ? asset('storage/' . $content->poster) : asset('imgs/content-posters/poster-placeholder.png'))}}">
                 </div>
             </div>
             {{-- delete modal --}}
@@ -196,7 +196,7 @@
                 </div>
                 <div class="col-12 col-sm-5 col-md-3 col-lg-2 d-flex align-items-center justify-content-center bg-light">
                     <img class="img-fluid w-100 h-100 object-fit-cover" alt="{{$content->title}}"
-                            src="{{$content->cover_image && str_starts_with($content->cover_image, 'imgs/') ? asset($content->cover_image) : ($content->cover_image ? asset('storage/' . $content->cover_image) : asset('imgs/placeholder.png'))}}">
+                            src="{{$content->poster && str_starts_with($content->poster, 'imgs/') ? asset($content->poster) : ($content->poster ? asset('storage/' . $content->poster) : asset('imgs/content-posters/poster-placeholder.png'))}}">
                 </div>
             </div>
             {{-- delete modal --}}

@@ -19,8 +19,10 @@
             <label class="form-label ms-1 fs-5" for="genre-description">Description</label>
             <textarea class="form-control" name="description" id="genre-description" placeholder="Insert Genre Description">{{$genre->description}}</textarea>
         </div>
+        {{-- submit --}}
         <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-success px-5 fw-semibold fs-5">Save Genre</button>
+            <button type="submit" class="btn btn-success px-5 fw-semibold fs-5 shadow-sm">
+                <i class="bi bi-save me-1"></i> Save changes</button>
         </div>
     </form>
 </div>

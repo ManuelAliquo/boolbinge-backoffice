@@ -60,9 +60,9 @@ class ContentController extends Controller
         $newContent->production = $data['production'];
         $newContent->length = $data['length'];
 
-        if (array_key_exists('cover_image', $data)) {
-            $imgUrl = Storage::putFile('cover_images', $data['cover_image']);
-            $newContent->cover_image = $imgUrl;
+        if (array_key_exists('poster', $data)) {
+            $imgUrl = Storage::putFile('posters', $data['poster']);
+            $newContent->poster = $imgUrl;
         }
 
         $newContent->save();
@@ -106,13 +106,13 @@ class ContentController extends Controller
         $content->production = $data['production'];
         $content->length = $data['length'];
 
-        if (array_key_exists('cover_image', $data)) {
-            if ($content->cover_image && !str_starts_with($content->cover_image, 'imgs/')) {
-                Storage::delete($content->cover_image);
+        if (array_key_exists('poster', $data)) {
+            if ($content->poster && !str_starts_with($content->poster, 'imgs/')) {
+                Storage::delete($content->poster);
             }
 
-            $imgUrl = Storage::putFile('cover_images', $data['cover_image']);
-            $content->cover_image = $imgUrl;
+            $imgUrl = Storage::putFile('posters', $data['poster']);
+            $content->poster = $imgUrl;
         }
 
         $content->save();
@@ -129,8 +129,8 @@ class ContentController extends Controller
     // DELETE
     public function destroy(Content $content)
     {
-        if ($content->cover_image && !str_starts_with($content->cover_image, 'imgs/')) {
-            Storage::delete($content->cover_image);
+        if ($content->poster && !str_starts_with($content->poster, 'imgs/')) {
+            Storage::delete($content->poster);
         }
 
         $content->delete();
