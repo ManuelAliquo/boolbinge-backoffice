@@ -60,18 +60,17 @@ class ContentController extends Controller
         $newContent->production = $data['production'];
         $newContent->length = $data['length'];
 
+        // MEDIA UPLOAD
         // poster upload
         if (array_key_exists('poster', $data)) {
             $posterUrl = Storage::putFile('posters', $data['poster']);
             $newContent->poster = $posterUrl;
         }
-
         // logo upload
         if (array_key_exists('logo', $data)) {
             $logoUrl = Storage::putFile('logos', $data['logo']);
             $newContent->logo = $logoUrl;
         }
-
         // background upload
         if (array_key_exists('background', $data)) {
             $backgroundUrl = Storage::putFile('backgrounds', $data['background']);
@@ -81,7 +80,6 @@ class ContentController extends Controller
         $newContent->save();
 
         if (isset($data['genres'])) $newContent->genres()->attach($data['genres']);
-
         if (isset($data['performers'])) $newContent->performers()->attach($data['performers']);
 
         return redirect()->route('contents.show', $newContent);
@@ -119,29 +117,32 @@ class ContentController extends Controller
         $content->production = $data['production'];
         $content->length = $data['length'];
 
+        // MEDIA CONTROL
+        // logo remove
+        if ($request->has('delete_logo')) {
+            if (!str_starts_with($content->logo, 'imgs/')) Storage::delete($content->logo);
+            $content->logo = null;
+        }
+        // background remove
+        if ($request->has('delete_background')) {
+            if (!str_starts_with($content->background, 'imgs/')) Storage::delete($content->background);
+            $content->background = null;
+        }
         // poster update
         if (array_key_exists('poster', $data)) {
-            if ($content->poster && !str_starts_with($content->poster, 'imgs/')) {
-                Storage::delete($content->poster);
-            }
+            if ($content->poster && !str_starts_with($content->poster, 'imgs/')) Storage::delete($content->poster);
             $posterUrl = Storage::putFile('posters', $data['poster']);
             $content->poster = $posterUrl;
         }
-
         // logo update
         if (array_key_exists('logo', $data)) {
-            if ($content->logo && !str_starts_with($content->logo, 'imgs/')) {
-                Storage::delete($content->logo);
-            }
+            if ($content->logo && !str_starts_with($content->logo, 'imgs/')) Storage::delete($content->logo);
             $logoUrl = Storage::putFile('logos', $data['logo']);
             $content->logo = $logoUrl;
         }
-
         // background update
         if (array_key_exists('background', $data)) {
-            if ($content->background && !str_starts_with($content->background, 'imgs/')) {
-                Storage::delete($content->background);
-            }
+            if ($content->background && !str_starts_with($content->background, 'imgs/')) Storage::delete($content->background);
             $backgroundUrl = Storage::putFile('backgrounds', $data['background']);
             $content->background = $backgroundUrl;
         }
@@ -160,17 +161,11 @@ class ContentController extends Controller
     // DELETE
     public function destroy(Content $content)
     {
-        if ($content->poster && !str_starts_with($content->poster, 'imgs/')) {
-            Storage::delete($content->poster);
-        }
+        if ($content->poster && !str_starts_with($content->poster, 'imgs/')) Storage::delete($content->poster);
 
-        if ($content->logo && !str_starts_with($content->logo, 'imgs/')) {
-            Storage::delete($content->logo);
-        }
+        if ($content->logo && !str_starts_with($content->logo, 'imgs/')) Storage::delete($content->logo);
 
-        if ($content->background && !str_starts_with($content->background, 'imgs/')) {
-            Storage::delete($content->background);
-        }
+        if ($content->background && !str_starts_with($content->background, 'imgs/')) Storage::delete($content->background);
 
         $content->delete();
         return redirect()->route('contents.index');
