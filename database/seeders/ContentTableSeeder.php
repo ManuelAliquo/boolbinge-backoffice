@@ -46,7 +46,7 @@ class ContentTableSeeder extends Seeder
                 'rating' => 9.0,
                 'production' => 'Peter Jackson',
                 'length' => '3h 21min',
-                'genres' => ['Action', 'Adventure', 'Fantasy', 'Drama'],
+                'genres' => ['Action', 'Adventure', 'Fantasy'],
                 'performers' => ['Elijah Wood', 'Viggo Mortensen', 'Ian McKellen'],
             ],
             [

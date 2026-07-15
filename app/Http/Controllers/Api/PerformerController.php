@@ -3,29 +3,29 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Content;
+use App\Models\Performer;
 
-class ContentController extends Controller
+class PerformerController extends Controller
 {
     // index
     public function index()
     {
-        $contents = Content::with('genres')->get();
+        $performers = Performer::all();
 
         return response()->json([
             'success' => true,
-            'data' => $contents
+            'data' => $performers
         ]);
     }
 
     // show
-    public function show(Content $content)
+    public function show(Performer $performer)
     {
-        $content->load(['genres', 'performers']);
+        $performer->load('contents');
 
         return response()->json([
             'success' => true,
-            'data' => $content
+            'data' => $performer
         ]);
     }
 }
