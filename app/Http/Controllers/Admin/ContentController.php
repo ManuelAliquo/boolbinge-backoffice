@@ -63,17 +63,17 @@ class ContentController extends Controller
         // MEDIA UPLOAD
         // poster upload
         if (array_key_exists('poster', $data)) {
-            $posterUrl = Storage::putFile('posters', $data['poster']);
+            $posterUrl = Storage::putFile('imgs/content-posters', $data['poster']);
             $newContent->poster = $posterUrl;
         }
         // logo upload
         if (array_key_exists('logo', $data)) {
-            $logoUrl = Storage::putFile('logos', $data['logo']);
+            $logoUrl = Storage::putFile('imgs/content-logos', $data['logo']);
             $newContent->logo = $logoUrl;
         }
         // background upload
         if (array_key_exists('background', $data)) {
-            $backgroundUrl = Storage::putFile('backgrounds', $data['background']);
+            $backgroundUrl = Storage::putFile('imgs/content-backgrounds', $data['background']);
             $newContent->background = $backgroundUrl;
         }
 
@@ -120,30 +120,30 @@ class ContentController extends Controller
         // MEDIA CONTROL
         // logo remove
         if ($request->has('delete_logo')) {
-            if (!str_starts_with($content->logo, 'imgs/')) Storage::delete($content->logo);
+            if ($content->logo) Storage::delete($content->logo);
             $content->logo = null;
         }
         // background remove
         if ($request->has('delete_background')) {
-            if (!str_starts_with($content->background, 'imgs/')) Storage::delete($content->background);
+            if ($content->background) Storage::delete($content->background);
             $content->background = null;
         }
         // poster update
         if (array_key_exists('poster', $data)) {
-            if ($content->poster && !str_starts_with($content->poster, 'imgs/')) Storage::delete($content->poster);
-            $posterUrl = Storage::putFile('posters', $data['poster']);
+            if ($content->poster) Storage::delete($content->poster);
+            $posterUrl = Storage::putFile('imgs/content-posters', $data['poster']);
             $content->poster = $posterUrl;
         }
         // logo update
         if (array_key_exists('logo', $data)) {
-            if ($content->logo && !str_starts_with($content->logo, 'imgs/')) Storage::delete($content->logo);
-            $logoUrl = Storage::putFile('logos', $data['logo']);
+            if ($content->logo) Storage::delete($content->logo);
+            $logoUrl = Storage::putFile('imgs/content-logos', $data['logo']);
             $content->logo = $logoUrl;
         }
         // background update
         if (array_key_exists('background', $data)) {
-            if ($content->background && !str_starts_with($content->background, 'imgs/')) Storage::delete($content->background);
-            $backgroundUrl = Storage::putFile('backgrounds', $data['background']);
+            if ($content->background) Storage::delete($content->background);
+            $backgroundUrl = Storage::putFile('imgs/content-backgrounds', $data['background']);
             $content->background = $backgroundUrl;
         }
 
@@ -161,11 +161,9 @@ class ContentController extends Controller
     // DELETE
     public function destroy(Content $content)
     {
-        if ($content->poster && !str_starts_with($content->poster, 'imgs/')) Storage::delete($content->poster);
-
-        if ($content->logo && !str_starts_with($content->logo, 'imgs/')) Storage::delete($content->logo);
-
-        if ($content->background && !str_starts_with($content->background, 'imgs/')) Storage::delete($content->background);
+        if ($content->poster) Storage::delete($content->poster);
+        if ($content->logo) Storage::delete($content->logo);
+        if ($content->background) Storage::delete($content->background);
 
         $content->delete();
         return redirect()->route('contents.index');

@@ -8,7 +8,7 @@
             <div class="poster rounded-3 border overflow-hidden w-100">
                 @if($content->poster)
                     <img class="img-fluid w-100 h-100 object-fit-cover" alt="{{$content->title}}"
-                        src="{{str_starts_with($content->poster, 'imgs/') ? asset($content->poster) : asset('storage/' . $content->poster)}}">
+                        src="{{asset('storage/' . $content->poster)}}">
                 @else
                     <img class="img-fluid w-100 h-100 object-fit-cover" src="{{asset('imgs/content-posters/poster-placeholder.png')}}" alt="placeholder">
                 @endif
@@ -101,49 +101,49 @@
                 </a>
                 <button class="btn btn-danger" data-bs-toggle="modal"
                 data-bs-target="#contentDeleteModal{{$content->id}}">
-                <i class="bi bi-trash3"></i> Delete
-            </button>
-        </div>
-    </div>
-    {{-- MEDIAS (logo - bg) --}}
-    <div class="mt-4 pt-3 border-top">
-        <span class="text-secondary d-block mb-3 fs-5 fw-semibold">
-            <i class="bi bi-images me-1"></i> Medias</span>
-        <div class="row g-3">
-            {{-- background Asset --}}
-            <div class="col-12 col-sm-8 col-md-10 col-lg-6">
-                <div class="p-2 border rounded bg-light d-flex flex-column justify-content-between h-100">
-                    @if($content->background)
-                    <h6 class="text-muted fw-bold mb-1">Background</h6>
-                    <div class="my-2 border rounded overflow-hidden">
-                        <img src="{{str_starts_with($content->background, 'imgs/') ? asset($content->background) : asset('storage/' . $content->background)}}" alt="background" class="img-fluid object-fit-contain">
-                    </div>
-                    <button type="button" class="btn btn-outline-dark py-1 w-100" data-bs-toggle="modal" data-bs-target="#backgroundModal">
-                        <i class="bi bi-eye-fill me-1"></i> View Background
-                    </button>
-                    @else
-                    <div class="text-muted text-center py-2 small my-auto">No background uploaded</div>
-                    @endif
-                </div>
-            </div>
-            {{-- logo Asset --}}
-            <div class="col-12 col-sm-8 col-md-10 col-lg-6">
-                <div class="p-2 border rounded bg-light d-flex flex-column justify-content-between h-100">
-                    @if($content->logo)
-                    <h6 class="text-muted fw-bold mb-1">Logo</h6>
-                    <div class="my-2 border rounded bg-secondary-subtle d-flex align-items-center justify-content-center p-2 ">
-                        <img src="{{str_starts_with($content->logo, 'imgs/') ? asset($content->logo) : asset('storage/' . $content->logo)}}" alt="logo" class="img-fluid object-fit-contain">
-                    </div>
-                    <button type="button" class="btn btn-outline-dark py-1 w-100" data-bs-toggle="modal" data-bs-target="#logoModal">
-                        <i class="bi bi-eye-fill me-1"></i> View Logo
-                    </button>
-                    @else
-                    <div class="text-muted text-center py-2 small my-auto">No logo uploaded</div>
-                    @endif
-                </div>
+                    <i class="bi bi-trash3"></i> Delete
+                </button>
             </div>
         </div>
-    </div>
+        {{-- MEDIAS (logo - bg) --}}
+        <div class="mt-4 pt-3 border-top">
+            <span class="text-secondary d-block mb-3 fs-5 fw-semibold">
+                <i class="bi bi-images me-1"></i> Medias</span>
+            <div class="row g-3">
+                {{-- background Asset --}}
+                <div class="col-12 col-sm-8 col-md-10 col-lg-6">
+                    <div class="p-2 border rounded bg-light d-flex flex-column justify-content-between h-100">
+                        @if($content->background)
+                        <h6 class="text-muted fw-bold mb-1">Background</h6>
+                        <div class="my-2 border rounded overflow-hidden">
+                            <img src="{{asset('storage/' . $content->background)}}" alt="background" class="img-fluid object-fit-contain">
+                        </div>
+                        <button type="button" class="btn btn-outline-dark py-1 w-100" data-bs-toggle="modal" data-bs-target="#backgroundModal">
+                            <i class="bi bi-eye-fill me-1"></i> View Background
+                        </button>
+                        @else
+                        <div class="text-muted text-center py-2 small my-auto">No background uploaded</div>
+                        @endif
+                    </div>
+                </div>
+                {{-- logo Asset --}}
+                <div class="col-12 col-sm-8 col-md-10 col-lg-6">
+                    <div class="p-2 border rounded bg-light d-flex flex-column justify-content-between h-100">
+                        @if($content->logo)
+                        <h6 class="text-muted fw-bold mb-1">Logo</h6>
+                        <div class="my-2 border rounded bg-secondary-subtle d-flex align-items-center justify-content-center p-2 ">
+                            <img src="{{asset('storage/' . $content->logo)}}" alt="logo" class="img-fluid object-fit-contain">
+                        </div>
+                        <button type="button" class="btn btn-outline-dark py-1 w-100" data-bs-toggle="modal" data-bs-target="#logoModal">
+                            <i class="bi bi-eye-fill me-1"></i> View Logo
+                        </button>
+                        @else
+                        <div class="text-muted text-center py-2 small my-auto">No logo uploaded</div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {{-- delete modal --}}
@@ -157,7 +157,7 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body d-flex align-items-center justify-content-center p-4">
-                <img src="{{str_starts_with($content->background, 'imgs/') ? asset($content->background) : asset('storage/' . $content->background)}}" 
+                <img src="{{asset('storage/' . $content->background)}}" 
                      alt="background" class="img-fluid object-fit-contain">
             </div>
         </div>
@@ -173,7 +173,7 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body d-flex align-items-center justify-content-center p-4">
-                <img src="{{str_starts_with($content->logo, 'imgs/') ? asset($content->logo) : asset('storage/' . $content->logo)}}" 
+                <img src="{{asset('storage/' . $content->logo)}}" 
                      alt="logo" class="img-fluid object-fit-contain">
             </div>
         </div>

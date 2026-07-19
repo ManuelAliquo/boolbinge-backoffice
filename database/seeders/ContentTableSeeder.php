@@ -7,12 +7,14 @@ use App\Models\Genre;
 use App\Models\Performer;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ContentTableSeeder extends Seeder
 {
     public function run(): void
     {
-        // All Contents
+        // all content
         $contents = [
             // MOVIES
             [
@@ -83,7 +85,57 @@ class ContentTableSeeder extends Seeder
                 'genres' => ['Action', 'Crime', 'Thriller'],
                 'performers' => ['Uma Thurman', 'Lucy Liu'],
             ],
-
+            [
+                'title' => 'Oppenheimer',
+                'short_description' => 'The story of the American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb.',
+                'long_description' => 'J. Robert Oppenheimer leads the Manhattan Project, racing to build the atomic bomb before the Nazis. Success brings global devastation and fame. Haunted by his creation\'s destructive power, he faces a postwar security hearing, a political crucifixion orchestrated by his rival Lewis Strauss, questioning his loyalty and legacy.',
+                'trailer' => 'https://youtu.be/bK6ldnjE3Y0?si=hmlN8WzIC5qLQ6VC',
+                'type' => 'movie',
+                'poster' => 'imgs/content-posters/Oppenheimer.webp',
+                'logo' => 'imgs/content-logos/Oppenheimer.webp',
+                'background' => 'imgs/content-backgrounds/Oppenheimer.jpg',
+                'release_year' => 2023,
+                'end_year' => null,
+                'rating' => 8.2,
+                'production' => 'Christopher Nolan',
+                'length' => '3h',
+                'genres' => ['Drama', 'Historical'],
+                'performers' => ['Cillian Murphy', 'Robert Downey Jr.'],
+            ],
+            [
+                'title' => 'Alien',
+                'short_description' => 'On the commercial spaceship Nostromo, a crew awakens to a distress signal, unknowingly bringing a lethal, parasitic extraterrestrial aboard that hunts them.',
+                'long_description' => 'On the commercial towing vessel Nostromo, the crew awakens to a distress signal from a desolate moon. Investigating a derelict alien spacecraft, they encounter a parasitic lifeform that violently gestates inside a crew member, unleashing a perfect, relentless predator that systematically hunts them through the ship\'s claustrophobic corridors.',
+                'trailer' => 'https://youtu.be/jQ5lPt9edzQ?si=L2OEB3cYmSLdniOy',
+                'type' => 'movie',
+                'poster' => 'imgs/content-posters/Alien.webp',
+                'logo' => 'imgs/content-logos/Alien.png',
+                'background' => 'imgs/content-backgrounds/Alien.jpg',
+                'release_year' => 1979,
+                'end_year' => null,
+                'rating' => 8.4,
+                'production' => 'Christopher Nolan',
+                'length' => '3h',
+                'genres' => ['Horror', 'Sci-Fi'],
+                'performers' => ['Sigourney Weaver', 'Tom Skerritt'],
+            ],
+            [
+                'title' => 'Django Unchained',
+                'short_description' => 'A freed slave partners with a German bounty hunter to rescue his wife from a brutal Mississippi plantation owner, leading to violent, explosive revenge.',
+                'long_description' => 'In 1858 Texas, freed slave Django teams with German bounty hunter Dr. King Schultz to track ruthless criminals. Their partnership leads to a mission to rescue Django\'s enslaved wife, Broomhilda, from the brutal plantation owner, Calvin Candie, culminating in a bloody, revenge-fueled shootout.',
+                'trailer' => 'https://youtu.be/0fUCuvNlOCg?si=QZdOFD-hHWhWuKDZ',
+                'type' => 'movie',
+                'poster' => 'imgs/content-posters/Django Unchained.webp',
+                'logo' => 'imgs/content-logos/Django Unchained.webp',
+                'background' => 'imgs/content-backgrounds/Django Unchained.webp',
+                'release_year' => 2012,
+                'end_year' => null,
+                'rating' => 8.5,
+                'production' => 'Quentin Tarantino',
+                'length' => '2h 45min',
+                'genres' => ['Western', 'Action'],
+                'performers' => ['Jamie Foxx', 'Christoph Waltz', 'Leonardo DiCaprio'],
+            ],
             // SHOWS
             [
                 'title' => 'Game of Thrones',
@@ -100,7 +152,7 @@ class ContentTableSeeder extends Seeder
                 'production' => 'HBO',
                 'length' => '8 Seasons (73 eps)',
                 'genres' => ['Action', 'Adventure', 'Drama', 'Fantasy'],
-                'performers' => ['Kit Harington', 'Emilia Clarke', 'Peter Dinklage'],
+                'performers' => ['Kit Harington', 'Emilia Clarke'],
             ],
             [
                 'title' => 'Breaking Bad',
@@ -123,7 +175,7 @@ class ContentTableSeeder extends Seeder
                 'title' => 'Stranger Things',
                 'short_description' => 'When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl.',
                 'long_description' => 'Set in the 1980s in the fictional town of Hawkins, Indiana, the sudden disappearance of a young boy sparks a chain of terrifying events. A group of local kids uncovers a government conspiracy involving secret human experiments, an alternate dimension known as the Upside Down, and a mysterious telekinetic girl named Eleven.',
-                'trailer' => 'https://www.youtube.com/watch?v=bV0qBlXN_pA',
+                'trailer' => 'https://youtu.be/b9EkMc79ZSU?si=LUDGe00pisciLCrk',
                 'type' => 'show',
                 'poster' => 'imgs/content-posters/Stranger Things.webp',
                 'logo' => 'imgs/content-logos/Stranger Things.webp',
@@ -140,7 +192,7 @@ class ContentTableSeeder extends Seeder
                 'title' => 'Invincible',
                 'short_description' => 'An adult animated superhero series that revolves around 17-year-old Mark Grayson, who is just like every other guy his age except his father is the most powerful superhero on the planet.',
                 'long_description' => 'Mark Grayson appears to be an ordinary teenager, except for the fact that his father, Omni-Man, is the planet\'s greatest protector. Shortly after turning 17, Mark begins to manifest his own powers, but as he trains under his father\'s wing, he discovers that the legacy of a true superhero is far bloodier and more complicated than it seems.',
-                'trailer' => 'https://www.youtube.com/watch?v=jRAi80ZSpTw',
+                'trailer' => 'https://youtu.be/-bfAVpuko5o?si=42oRK32Mj2Wzgg-C',
                 'type' => 'show',
                 'poster' => 'imgs/content-posters/Invincible.webp',
                 'logo' => 'imgs/content-logos/Invincible.png',
@@ -153,13 +205,29 @@ class ContentTableSeeder extends Seeder
                 'genres' => ['Action', 'Adventure', 'Animation'],
                 'performers' => ['Steven Yeun', 'J.K. Simmons'],
             ],
-
+            [
+                'title' => 'Vikings',
+                'short_description' => 'Ragnar Lothbrok rises from farmer to legendary hero, raiding treacherous seas and challenging gods, kings, and his own blood in a brutal quest for glory.',
+                'long_description' => 'Ambitious Viking farmer Ragnar Lothbrok seeks new worlds to conquer, defying his chieftain to raid England . His success ignites a brutal power struggle at home, forcing him to navigate between his warrior brother Rollo, his shieldmaiden wife Lagertha, and the clash of pagan and Christian faiths.',
+                'trailer' => 'https://youtu.be/9GgxinPwAGc?si=tWYbGCoD2y_9ItQZ',
+                'type' => 'show',
+                'poster' => 'imgs/content-posters/Vikings.webp',
+                'logo' => 'imgs/content-logos/Vikings.webp',
+                'background' => 'imgs/content-backgrounds/Vikings.webp',
+                'release_year' => 2013,
+                'end_year' => 2021,
+                'rating' => 8.5,
+                'production' => 'History',
+                'length' => '6 Seasons (89 eps)',
+                'genres' => ['Action', 'Adventure', 'Historical'],
+                'performers' => ['Travis Fimmel', 'Katheryn Winnick'],
+            ],
             // ANIME
             [
                 'title' => 'Jujutsu Kaisen',
                 'short_description' => 'A boy swallows a cursed talisman - the finger of a demon - and becomes cursed himself. He enters a shaman\'s school to be able to locate the demon\'s other body parts and thus exorcise himself.',
                 'long_description' => 'Yuji Itadori is a high schooler with freakish physical strength who unexpectedly swallows a rotten finger containing a legendary curse to save his friends. Becoming the vessel for Ryomen Sukuna, the King of Curses, Yuji is thrust into Tokyo Jujutsu High, a secret academy dedicated to training Sorcerers to exorcise malevolent spirits.',
-                'trailer' => 'https://www.youtube.com/watch?v=Pm-wNmS9RGI',
+                'trailer' => 'https://youtu.be/VpO6APNqY1c?si=41RfCPt5W6QSk6Fa',
                 'type' => 'anime',
                 'poster' => 'imgs/content-posters/Jujutsu Kaisen.webp',
                 'logo' => 'imgs/content-logos/Jujutsu Kaisen.webp',
@@ -210,7 +278,7 @@ class ContentTableSeeder extends Seeder
                 'title' => 'Death Note',
                 'short_description' => 'An intelligent high school student goes on a secret crusade to eliminate criminals from the world after discovering a notebook capable of killing anyone whose name is written in it.',
                 'long_description' => 'Light Yagami is an elite high school student who grows increasingly disillusioned with a corrupt world. His life alters completely when he uncovers the "Death Note"—a mystical notebook belonging to a Shinigami that kills anyone whose name is written in it. Light initiates a global vigilante purge under the alias Kira, entering a tense psychological war with the world\'s greatest detective, L.',
-                'trailer' => 'https://www.youtube.com/watch?v=NlJZ-YSI1T4',
+                'trailer' => 'https://youtu.be/NlJZ-YgAt-c?si=Q7i2efZp8hBpRWpL',
                 'type' => 'anime',
                 'poster' => 'imgs/content-posters/Death Note.webp',
                 'logo' => 'imgs/content-logos/Death Note.webp',
@@ -223,10 +291,34 @@ class ContentTableSeeder extends Seeder
                 'genres' => ['Animation', 'Crime', 'Drama', 'Thriller'],
                 'performers' => null
             ],
+            [
+                'title' => 'Cowboy Bebop',
+                'short_description' => 'In 2071, bounty hunters Spike and Jet chase criminals across space. Haunted by pasts, they confront the Syndicate, forcing Spike to face his deadly destiny.',
+                'long_description' => 'In 2071, bounty hunters Spike Spiegel and Jet Black chase criminals across the solar system from their ship, the Bebop. Joined by amnesiac con artist Faye Valentine, eccentric hacker Ed, and super-intelligent dog Ein, they face dangerous jobs. But their violent pasts, especially Spike\'s syndicate ties, inevitably catch up.',
+                'trailer' => 'https://youtu.be/OhNwckCLzis?si=hQVrMOw70dc6mIHA',
+                'type' => 'anime',
+                'poster' => 'imgs/content-posters/Cowboy Bebop.webp',
+                'logo' => 'imgs/content-logos/Cowboy Bebop.webp',
+                'background' => 'imgs/content-backgrounds/Cowboy Bebop.webp',
+                'release_year' => 1998,
+                'end_year' => 1999,
+                'rating' => 8.9,
+                'production' => 'Sunrise',
+                'length' => '1 Season (26 Eps)',
+                'genres' => ['Animation', 'Action', 'Western', 'Sci-Fi'],
+                'performers' => null
+            ],
         ];
 
-        // contents creation
+        // content creation
         foreach ($contents as $content) {
+            // storage copies
+            $imageKeys = ['poster', 'logo', 'background'];
+            foreach ($imageKeys as $key) {
+                if ($content[$key] && File::exists(public_path($content[$key])))
+                    Storage::disk('public')->put($content[$key], File::get(public_path($content[$key])));
+            }
+
             $newContent = Content::create([
                 'title' => $content['title'],
                 'slug' => Str::slug($content['title']),

@@ -127,7 +127,7 @@
                     </div>
                     @if($content->poster)
                     <img alt="poster-preview" class="content-thumbnail object-fit-cover img-thumbnail bg-secondary-subtle" 
-                    src="{{str_starts_with($content->poster, 'imgs/') ? asset($content->poster) : asset('storage/' . $content->poster)}}">                            
+                    src="{{ asset('storage/' . $content->poster) }}">                            
                     @endif
                 </div>
             </div>
@@ -135,11 +135,11 @@
         {{-- logo --}}
         <div class="mb-4">
             <div class="card p-2">
-                <div class="d-flex flex-column gap-3 align-intems-center">
+                <div class="d-flex flex-column gap-3 align-items-center">
                     <div class="flex-grow-1 ms-2">
                         <div class="d-flex align-items-center gap-3 flex-wrap mb-2">
                             <label class="form-label ms-1 mb-0 fs-5" for="logo">Logo</label>
-                            {{-- remove swith --}}
+                            {{-- remove switch --}}
                             @if($content->logo)
                             <div class="form-check form-switch d-flex align-items-center gap-2 mb-0">
                                 <input class="form-check-input" type="checkbox" name="delete_logo" id="delete_logo">
@@ -152,7 +152,7 @@
                     </div>
                     @if($content->logo)
                     <img alt="logo-preview" class="content-thumbnail object-fit-contain img-thumbnail bg-secondary-subtle" 
-                    src="{{str_starts_with($content->logo, 'imgs/') ? asset($content->logo) : asset('storage/' . $content->logo)}}">                            
+                    src="{{ asset('storage/' . $content->logo) }}">                            
                     @endif
                 </div>
             </div>
@@ -160,11 +160,11 @@
         {{-- background --}}
         <div class="mb-4">
             <div class="card p-2">
-                <div class="d-flex flex-column flex-md-row gap-3 align-intems-center">
+                <div class="d-flex flex-column flex-md-row gap-3 align-items-center">
                     <div class="flex-grow-1 ms-2">
                         <div class="d-flex align-items-center gap-3 flex-wrap mb-2">
                             <label class="form-label ms-1 mb-0 fs-5" for="background">Background</label>
-                            {{-- remove swith --}}
+                            {{-- remove switch --}}
                             @if($content->background)
                             <div class="form-check form-switch d-flex align-items-center gap-2 mb-0">
                                 <input class="form-check-input" type="checkbox" name="delete_background" id="delete_background">
@@ -177,7 +177,7 @@
                     </div>
                     @if($content->background)
                     <img alt="background-preview" class="content-thumbnail object-fit-contain img-thumbnail bg-secondary-subtle" 
-                    src="{{str_starts_with($content->background, 'imgs/') ? asset($content->background) : asset('storage/' . $content->background)}}">                            
+                    src="{{ asset('storage/' . $content->background) }}">                            
                     @endif
                 </div>
             </div>

@@ -3,9 +3,9 @@
 @section('content')
 <div class="container my-4">
     {{-- search --}}
-    <form action="{{route('performers.index')}}" method="GET" class="mb-4">
+    <form action="{{route('performers.index')}}" class="mb-4" role="search">
         <div class="input-group">
-            <input type="text" name="search" class="form-control" placeholder="Search a name..." 
+            <input type="search" name="search" class="form-control" placeholder="Search a name..." 
                 value="{{request('search')}}">
             <button type="submit" class="btn btn-primary">Search</button>
             @if ($search)

@@ -10,7 +10,7 @@
                     <img class="img-fluid w-100 h-100 object-fit-cover" alt="{{$performer->title}}"
                         src="{{str_starts_with($performer->picture, 'imgs/') ? asset($performer->picture) : asset('storage/' . $performer->picture)}}">
                 @else
-                    <img class="img-fluid w-100 h-100 object-fit-cover" src="{{asset('imgs/placeholder.png')}}" alt="placeholder">
+                    <img class="img-fluid w-100 h-100 object-fit-cover" src="{{asset('imgs/performers-pictures/performer-placeholder.png')}}" alt="placeholder">
                 @endif
             </div>
         </div>

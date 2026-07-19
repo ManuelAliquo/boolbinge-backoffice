@@ -3,9 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Performer;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class PerformerTableSeeder extends Seeder
 {
@@ -57,10 +58,6 @@ class PerformerTableSeeder extends Seeder
                 'picture' => 'imgs/performers-pictures/Emilia Clarke.webp'
             ],
             [
-                'name' => 'Peter Dinklage',
-                'picture' => 'imgs/performers-pictures/Peter Dinklage.webp'
-            ],
-            [
                 'name' => 'Bryan Cranston',
                 'picture' => 'imgs/performers-pictures/Bryan Cranston.webp'
             ],
@@ -83,10 +80,47 @@ class PerformerTableSeeder extends Seeder
             [
                 'name' => 'J.K. Simmons',
                 'picture' => 'imgs/performers-pictures/JK Simmons.webp'
-            ]
+            ],
+            [
+                'name' => 'Cillian Murphy',
+                'picture' => 'imgs/performers-pictures/Cillian Murphy.webp'
+            ],
+            [
+                'name' => 'Robert Downey Jr.',
+                'picture' => 'imgs/performers-pictures/Robert Downey Jr..webp'
+            ],
+            [
+                'name' => 'Travis Fimmel',
+                'picture' => 'imgs/performers-pictures/Travis Fimmel.webp'
+            ],
+            [
+                'name' => 'Katheryn Winnick',
+                'picture' => 'imgs/performers-pictures/Katheryn Winnick.webp'
+            ],
+            [
+                'name' => 'Sigourney Weaver',
+                'picture' => 'imgs/performers-pictures/Sigourney Weaver.webp'
+            ],
+            [
+                'name' => 'Tom Skerritt',
+                'picture' => 'imgs/performers-pictures/Tom Skerritt.webp'
+            ],
+            [
+                'name' => 'Jamie Foxx',
+                'picture' => 'imgs/performers-pictures/Jamie Foxx.webp'
+            ],
+            [
+                'name' => 'Christoph Waltz',
+                'picture' => 'imgs/performers-pictures/Christoph Waltz.webp'
+            ],
         ];
 
         foreach ($performers as $performer) {
+            // storage copies
+            if ($performer['picture'] && File::exists(public_path($performer['picture'])))
+                Storage::disk('public')->put($performer['picture'], File::get(public_path($performer['picture'])));
+
+
             Performer::create([
                 'name' => $performer['name'],
                 'slug' => Str::slug($performer['name']),

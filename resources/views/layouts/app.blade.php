@@ -24,7 +24,7 @@
             <div class="container">
                 {{-- brand --}}
                 <a class="navbar-brand d-flex align-items-center" href="{{url('/')}}">
-                    <img class="img-fluid" src="{{asset('imgs/boolbinge-nobackground.png')}}" alt="nav-brand">
+                    <img class="img-fluid mb-1" src="{{asset('imgs/boolbinge-nobackground.png')}}" alt="nav-brand">
                 </a>
                 {{-- toggler --}}
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{__('Toggle navigation')}}">

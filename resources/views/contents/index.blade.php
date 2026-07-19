@@ -3,9 +3,9 @@
 @section('content')
 <div class="container my-4">
     {{-- search --}}
-    <form action="{{route('contents.index')}}" method="GET" class="mb-4">
+    <form action="{{route('contents.index')}}" class="mb-4" role="search">
         <div class="input-group">
-            <input type="text" name="search" class="form-control" placeholder="Search a title..." 
+            <input type="search" name="search" class="form-control" placeholder="Search a title..."
                 value="{{request('search')}}">
             <button type="submit" class="btn btn-primary">Search</button>
             @if ($search)
@@ -69,8 +69,8 @@
                     </div>
                 </div>
                 <div class="col-12 col-sm-5 col-md-3 col-lg-2 d-flex align-items-center justify-content-center bg-light">
-                    <img class="img-fluid w-100 h-100 object-fit-cover" alt="{{$content->title}}"
-                        src="{{$content->poster && str_starts_with($content->poster, 'imgs/') ? asset($content->poster) : ($content->poster ? asset('storage/' . $content->poster) : asset('imgs/content-posters/poster-placeholder.png'))}}">
+                    <img class="img-fluid w-100 h-100 object-fit-cover" alt="{{ $content->title }}"
+                        src="{{ $content->poster ? asset('storage/' . $content->poster) : asset('imgs/content-posters/poster-placeholder.png') }}">
                 </div>
             </div>
             {{-- delete modal --}}
@@ -133,7 +133,7 @@
                 </div>
                 <div class="col-12 col-sm-5 col-md-3 col-lg-2 d-flex align-items-center justify-content-center bg-light">
                     <img class="img-fluid w-100 h-100 object-fit-cover" alt="{{$content->title}}"
-                        src="{{$content->poster && str_starts_with($content->poster, 'imgs/') ? asset($content->poster) : ($content->poster ? asset('storage/' . $content->poster) : asset('imgs/content-posters/poster-placeholder.png'))}}">
+                        src="{{$content->poster ? asset('storage/' . $content->poster) : asset('imgs/content-posters/poster-placeholder.png')}}">
                 </div>
             </div>
             {{-- delete modal --}}
@@ -196,7 +196,7 @@
                 </div>
                 <div class="col-12 col-sm-5 col-md-3 col-lg-2 d-flex align-items-center justify-content-center bg-light">
                     <img class="img-fluid w-100 h-100 object-fit-cover" alt="{{$content->title}}"
-                            src="{{$content->poster && str_starts_with($content->poster, 'imgs/') ? asset($content->poster) : ($content->poster ? asset('storage/' . $content->poster) : asset('imgs/content-posters/poster-placeholder.png'))}}">
+                            src="{{$content->poster ? asset('storage/' . $content->poster) : asset('imgs/content-posters/poster-placeholder.png')}}">
                 </div>
             </div>
             {{-- delete modal --}}

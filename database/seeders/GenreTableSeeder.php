@@ -55,10 +55,6 @@ class GenreTableSeeder extends Seeder
                 'name' => 'Western',
                 'description' => 'Tales of rugged frontiers, lawless towns, and lone riders navigating the harsh American Old West.'
             ],
-            [
-                'name' => 'Comedy',
-                'description' => 'Lighthearted stories built on humor, witty dialogue, and absurd situations meant to provoke laughter.'
-            ],
         ];
 
         foreach ($genres as $genre) {
